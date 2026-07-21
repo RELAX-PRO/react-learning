@@ -1,0 +1,17 @@
+/* =========================================================================
+   File: OpticalCard.module.css (Scoped Module consuming Global Tokens)
+   ========================================================================= */
+.cardContainer {
+  /* نسحب الألوان والمسافات من الهوية العامة مباشرة! */
+  background-color: var(--clinic-bg-dark);
+  border: 1px solid var(--clinic-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-p);
+  color: var(--text-main);
+  transition: border-color 0.2s ease;
+}
+
+.cardContainer:hover {
+  /* استخدام اللون الرسمي عند التحويم */
+  border-color: var(--clinic-primary);
+}

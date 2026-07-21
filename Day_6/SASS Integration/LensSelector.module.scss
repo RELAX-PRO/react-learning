@@ -1,0 +1,45 @@
+/* =========================================================================
+   File 2: LensSelector.module.scss (Scoped SASS Module)
+   ========================================================================= */
+// 1. استيراد ثوابت نظام التصميم المركزي:
+@import './tokens';
+
+// 2. بناء المكون باستخدام التداخل (Nesting):
+.selectorContainer {
+  background-color: $clinic-background;
+  border: 1px solid $clinic-border;
+  border-radius: 12px;
+  padding: 20px;
+  
+  // تنسيق العنوان الداخلي باستخدام التداخل:
+  .title {
+    color: $clinic-primary;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  // تنسيق قائمة العدسات:
+  .lensesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    .lensOption {
+      @include flex-center; // استدعاء الخلطة الجاهزة للتوسيط!
+      background-color: lighten($clinic-background, 5%);
+      color: $text-light;
+      border: 1px solid $clinic-border;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      // تنسيق التحويم وحالة الاختيار دون تكرار أسماء طويلة:
+      &:hover {
+        border-color: $clinic-primary;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
