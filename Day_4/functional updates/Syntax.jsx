@@ -17,6 +17,6 @@ const toggleSidebar = () => {
 };
 
 // ✅ Immutable & Safe way (Guaranteed to always toggle the real current state):
-const toggleSidebarSecure = () => {
+const toggleSidebar = () => {
   setIsOpen(prev => !prev);
 };
