@@ -5,8 +5,7 @@ import React, { useState, useEffect } from 'react';
 import optometryApiClient from '../services/optometryApiClient';
 
 const NormalizedPatientsVault = () => {
-  // 1. THE NORMALIZED STATE ARCHITECTURE:
-  // Instead of an array [], we store data as an indexed dictionary (byId) + order list (allIds)
+  // Store records as byId + allIds so lookups and updates stay predictable.
   const [patientsState, setPatientsState] = useState({
     byId: {},
     allIds: []
@@ -18,23 +17,19 @@ const NormalizedPatientsVault = () => {
     const fetchAndNormalizeData = async () => {
       try {
         setIsLoading(true);
-        // Simulating receiving a raw, un-normalized Array from the backend API:
+        // Convert the raw array response into a normalized shape.
         const response = await optometryApiClient.get('/patients');
-        const rawPatientsArray = response.data; // e.g. [{id: 'p1', name: 'Ali'}, {id: 'p2', ...}]
+        const rawPatientsArray = response.data;
 
-        // 2. THE NORMALIZATION ENGINE (Flattening the Array into an Indexed Object):
         const normalizedData = rawPatientsArray.reduce(
           (acc, currentPatient) => {
-            // Use the patient ID as the direct lookup key in the dictionary:
             acc.byId[currentPatient.id] = currentPatient;
-            // Push the ID into the ordered array:
             acc.allIds.push(currentPatient.id);
             return acc;
           },
-          { byId: {}, allIds: [] } // Initial empty normalized structure
+          { byId: {}, allIds: [] }
         );
 
-        // Save the clean, flattened database into React memory:
         setPatientsState(normalizedData);
       } catch (error) {
         console.error("Failed to load records:", error);
@@ -46,13 +41,12 @@ const NormalizedPatientsVault = () => {
     fetchAndNormalizeData();
   }, []);
 
-  // 3. THE O(1) SUPERPOWER UPDATE FUNCTION (Zero array looping required!):
+  // Update one patient by ID without rebuilding the whole array.
   const handleUpdateDiagnosis = (patientId, newDiagnosis) => {
     setPatientsState((prevState) => ({
       ...prevState,
       byId: {
         ...prevState.byId,
-        // Direct target modification in 0.0001 ms! Notice we don't use .map() here!
         [patientId]: {
           ...prevState.byId[patientId],
           diagnosis: newDiagnosis,
@@ -71,10 +65,8 @@ const NormalizedPatientsVault = () => {
         👁️ Normalized Patient Repository ({patientsState.allIds.length} Records)
       </h2>
 
-      {/* 4. Rendering using the allIds order array to instantly grab from byId dictionary */}
       <div className="space-y-4">
         {patientsState.allIds.map((id) => {
-          // Direct O(1) memory lookup for each card:
           const patient = patientsState.byId[id];
 
           return (

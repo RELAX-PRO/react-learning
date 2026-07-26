@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
 const DoctorQuickNote = () => {
-  // 1. القراءة الذكية عند تحميل الصفحة لأول مرة فقط (Lazy Initialization):
+  // Lazy initialization reads from localStorage only on the first render.
   const [note, setNote] = useState(() => {
     const savedNote = localStorage.getItem('doctor_quick_note');
-    // إذا وجدنا كلاماً محفوظاً سابقاً نسترجعه، وإذا كانت الخزنة فارغة نبدأ بنص فارغ
+    // If a note already exists, restore it; otherwise start empty.
     return savedNote !== null ? JSON.parse(savedNote) : "";
   });
 
-  // 2. المراقبة والحفظ التلقائي عند أي تغيير:
+  // Save the note again whenever its value changes.
   useEffect(() => {
-    // في كل مرة يكتب الطبيب حرفاً جديداً، نحفظ النص فوراً في الخزنة
     localStorage.setItem('doctor_quick_note', JSON.stringify(note));
-  }, [note]); // 👈 هذا المصفوفة تعني: "نفذ الحفظ فقط عندما يتغير النص"
+  }, [note]); // The dependency array keeps this effect tied to note changes only.
 
   return (
     <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl text-white font-mono max-w-md mx-auto">
       <h3 className="text-cyan-400 font-bold mb-3">📌 مفكرة الطبيب (حفظ تلقائي)</h3>
-      
+
       <textarea
         value={note}
         onChange={(e) => setNote(e.target.value)}
@@ -27,8 +26,8 @@ const DoctorQuickNote = () => {
 
       <div className="flex justify-between items-center mt-3 text-xs text-slate-500">
         <span>💾 محمي وحي في localStorage</span>
-        {/* زر لتنظيف الخزنة ومسح الملاحظة */}
-        <button 
+        {/* Clear the stored note from React state and localStorage on the next render. */}
+        <button
           onClick={() => setNote("")}
           className="text-red-400 hover:underline cursor-pointer"
         >

@@ -3,5 +3,5 @@
 // ==========================================
 import { createContext } from 'react';
 
-// 1. ننشئ القناة خارج أي مكون (في العراء فوق):
+// Create the channel once at module scope so every component can use the same context.
 export const ClinicContext = createContext();

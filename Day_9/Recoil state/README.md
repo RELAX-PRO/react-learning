@@ -1,7 +1,25 @@
-# 🚨 الحقيقة الميدانية الصادمة عن Recoil في سوق العمل اليوم (2026)
+# Recoil State
 
-## وصولك إلى Recoil State في خريطة الطريق يفتح باباً تاريخياً وهندسياً مهماً جداً! لكن بصفتي مستشارك الهندسي، يجب أن أعطيك الرؤية المعمارية الصريحة قبل أن تضيع ساعات طويلة في دراستها:
+This folder covers Recoil as an atomic state model and explains where it fits in the learning roadmap.
 
-### لماذا تدرس Recoil بعد Jotai مباشرة؟ لأن شركة Facebook (Meta) هي التي اخترعت مفهوم "الحالة الذرية (Atomic State)" من الأساس عبر مكتبتها الرسمية Recoil! هي "الأب الروحي" لهذا الأسلوب.
+## What to learn
 
-## ولكن في سوق العمل الحديث اليوم، تُعتبر Recoil مكتبة شبه متقاعدة (Legacy / Unmaintained)! لقد تفوقت عليها Jotai واكتسحت السوق تماماً؛ لأن Recoil عانت من تعقيد إضافي ومشاكل في التوافق مع محركات React الحديثة (مثل React 18 و 19)، فقام مجتمع المطورين بهجرها والانتقال إلى Jotai التي درستها أنت قبل قليل!
+- Atom and selector ideas
+- How state units stay small and focused
+- How Recoil compares with other global state tools
+
+## Why it matters
+
+Recoil is useful as a learning step for understanding atomic state design. Even if another library is preferred in a real project, the mental model helps you understand how state can be split into small reusable units.
+
+## Good mental model
+
+- Atoms hold small pieces of state
+- Selectors derive values from atoms or other selectors
+- Components subscribe only to the pieces they need
+
+## Practice checklist
+
+- Define one atom
+- Read one derived value
+- Compare Recoil with Jotai and Zustand

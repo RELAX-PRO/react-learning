@@ -11,24 +11,23 @@ import PatientBilling from '../views/PatientBilling';
 
 const AppRouter = () => {
   return (
+    // BrowserRouter keeps the app synced with the browser URL and history.
     <BrowserRouter>
       <Routes>
-        
-        {/* --- THE PARENT ROUTE (The Persistent Layout) --- */}
-        {/* Notice: No self-closing tag here! We open <Route> to wrap child routes inside it */}
+
+        {/* Parent route: it renders the shared layout that stays visible across child pages. */}
         <Route path="/patients/:id" element={<PatientProfileLayout />}>
-          
-          {/* --- CHILD ROUTE 1: Default View (when URL is exactly /patients/884) --- */}
-          {/* The 'index' prop means: render this child by default in the parent's Outlet */}
+
+          {/* index means: render this child when the parent path matches exactly. */}
           <Route index element={<PatientLensesHistory />} />
 
-          {/* --- CHILD ROUTE 2: Lenses Tab (/patients/884/lenses) --- */}
+          {/* Nested child route for the lenses tab. */}
           <Route path="lenses" element={<PatientLensesHistory />} />
 
-          {/* --- CHILD ROUTE 3: Appointments Tab (/patients/884/appointments) --- */}
+          {/* Nested child route for appointments. */}
           <Route path="appointments" element={<PatientAppointments />} />
 
-          {/* --- CHILD ROUTE 4: Billing Tab (/patients/884/billing) --- */}
+          {/* Nested child route for billing. */}
           <Route path="billing" element={<PatientBilling />} />
 
         </Route>

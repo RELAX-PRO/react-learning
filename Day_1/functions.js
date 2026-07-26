@@ -1,49 +1,51 @@
-// Function Declaration (Can be called BEFORE it is defined due to Hoisting)
-console.log(calculateDiscount(100)); // Output: 90 (Works perfectly!)
+// Function declarations are hoisted, so they can be called before their definition.
+console.log(calculateDiscount(100)); // 90
 
 function calculateDiscount(price) {
+  // A simple return-based calculation.
   return price * 0.9;
 }
 
-// Function Expression (Stored inside a const variable)
-// console.log(applyTax(100)); // ❌ ReferenceError: Cannot access 'applyTax' before initialization
+// Function expressions are stored in variables and are not available before initialization.
+// console.log(applyTax(100)); // ReferenceError
 
-const applyTax = function(amount) {
+const applyTax = function (amount) {
+  // This behaves like any other function value.
   return amount * 1.15;
 };
 
-console.log(applyTax(100)); // Output: 115 (Works only after definition)
+console.log(applyTax(100)); // 115
 
-// 1. Standard Arrow Function (With brackets and explicit return)
+// Arrow functions are shorter and are common in React code.
 const getUserRole = (isAdmin) => {
+  // Use an explicit return when logic has more than one branch.
   if (isAdmin) {
-    return "Admin Dashboard";
+    return 'Admin Dashboard';
   }
-  return "Guest View";
+  return 'Guest View';
 };
 
-// 2. Implicit Return Arrow Function (One-liner! No braces {}, No 'return' keyword)
+// Implicit return works when the function is a single expression.
 const multiply = (a, b) => a * b;
-console.log(multiply(5, 4)); // Output: 20
+console.log(multiply(5, 4)); // 20
 
-// 🚀 HOW IT LOOKS IN REACT JSX (Implicitly returning UI components):
-// We omit braces to instantly return JSX elements!
+// In React, a component can implicitly return JSX the same way.
 /*const WelcomeBanner = (userName) => (
   <div className="banner">
     <h1>Welcome back, {userName}!</h1>
   </div>
 );*/
 
-// Passing a function as an argument to another function (Callback pattern)
+// Functions are values, so they can be passed to other functions.
 const executeAction = (actionCallback, data) => {
-  console.log("Preparing to execute action...");
+  console.log('Preparing to execute action...');
   actionCallback(data); // Executing the received function!
 };
 
-// Defining a simple arrow function to be passed
+// A normal function that can be reused as a callback.
 const logSuccess = (message) => {
-  console.log("SUCCESS: " + message);
+  console.log('SUCCESS: ' + message);
 };
 
-// Passing 'logSuccess' function just like any standard variable!
-executeAction(logSuccess, "React component mounted!");
+// The callback is passed like any other variable.
+executeAction(logSuccess, 'React component mounted!');

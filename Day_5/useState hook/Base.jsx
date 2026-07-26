@@ -1,17 +1,26 @@
 const UserProfile = () => {
-  const [name, setName] = useState("Majed");     // الخطاف رقم 1
-  const [age, setAge] = useState(26);            // الخطاف رقم 2
-  const [isOnline, setIsOnline] = useState(true); // الخطاف رقم 3
-  // ...
+  // Each useState call stores one independent piece of local state.
+  const [name, setName] = useState('Majed');
+  const [age, setAge] = useState(26);
+  const [isOnline, setIsOnline] = useState(true);
+
+  // The component can render UI based on those values.
+  return null;
 };
 
 const BadComponent = ({ isConnected }) => {
-  // ⚠️ CRITICAL BUG: Hook inside a conditional statement!
+  // Hooks must always stay at the top level and in the same order.
   if (isConnected) {
-    const [name, setName] = useState("Majed");     // الفهرس [0] في الذاكرة
+    // Wrong: this hook may run sometimes and skip other times.
+    const [name, setName] = useState('Majed');
   }
 
-  const [age, setAge] = useState(26);              // الفهرس [1] في الذاكرة
-  const [isOnline, setIsOnline] = useState(true);  // الفهرس [2] في الذاكرة
-  // ...
+  // If the order changes, React will associate the wrong state with the wrong hook.
+  const [age, setAge] = useState(26);
+  const [isOnline, setIsOnline] = useState(true);
+
+  // Hooks are only safe when they are unconditional.
+  return null;
 };
+
+// Takeaway: the hook order must never change between renders.

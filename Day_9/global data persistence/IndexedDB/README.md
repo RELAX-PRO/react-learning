@@ -1,4 +1,15 @@
-# 🐘 دليل المراجعة السريع: التعامل مع `IndexedDB` في React (عبر idb-keyval)
+# IndexedDB
+
+This folder introduces browser-side structured storage for larger offline data.
+
+## What to learn
+
+- Why IndexedDB is more powerful than key-value storage
+- When to use it for larger data sets
+
+## Practice checklist
+
+- Describe one use case for offline storage# 🐘 دليل المراجعة السريع: التعامل مع `IndexedDB` في React (عبر idb-keyval)
 
 > **الهدف:** حفظ البيانات الضخمة جداً (آلاف السجلات، ملفات PDF، صور الأشعة، العمل بدون إنترنت Offline-First) داخل المتصفح بأمان وسرعة، دون تجميد الشاشة أو الاصطدام بحدود المساحة.
 

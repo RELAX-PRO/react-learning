@@ -1,62 +1,68 @@
-// Creating a Promise that simulates fetching user data from a server:
+// A Promise represents a future result: success or failure.
 const fetchUserProfile = new Promise((resolve, reject) => {
-  console.log("Server: Fetching data in progress...");
-  
-  // We use setTimeout to simulate a real server delay (e.g., 2 seconds)
+  // Simulate a server request.
+  console.log('Server: fetching user profile...');
+
   setTimeout(() => {
-    const isServerOnline = true; // Change this to false to simulate an error!
-    
+    // This flag controls whether the promise resolves or rejects.
+    const isServerOnline = true;
+
     if (isServerOnline) {
-      // 1. If operation is successful, we call resolve() and pass the data:
-      const userData = { id: 101, username: "Majed_IQ", role: "Developer" };
-      resolve(userData);
-    } else {
-      // 2. If operation fails, we call reject() and pass an error message:
-      reject("ERROR: Server is offline or connection timed out!");
+      // Success path: resolve with real data.
+      resolve({ id: 101, username: 'Majed_IQ', role: 'Developer' });
+      return;
     }
+
+    // Failure path: reject with an Error object.
+    reject(new Error('Server is offline or connection timed out.'));
   }, 2000);
 });
 
-
-// Consuming the Promise using .then(), .catch(), and .finally():
-console.log("App: Starting request...");
+// This line runs immediately; the promise is still pending.
+console.log('App: starting request...');
 
 fetchUserProfile
   .then((data) => {
-    // This runs ONLY if resolve() was called inside the promise
-    console.log("SUCCESS: Data received successfully!", data);
+    // Then runs only when the promise resolves.
+    console.log('SUCCESS: data received successfully!', data);
     console.log(`Welcome back, ${data.username}!`);
   })
-  .catch((errorMessage) => {
-    // This runs ONLY if reject() was called inside the promise
-    console.error("FAILED: Could not load profile.", errorMessage);
+  .catch((error) => {
+    // Catch runs only when the promise rejects.
+    console.error('FAILED: could not load profile.', error.message);
   })
   .finally(() => {
-    // This runs NO MATTER WHAT at the very end
-    console.log("App: Request cycle completed (Hide loading spinner).");
+    // Finally runs no matter what happened above.
+    console.log('App: request cycle completed (hide loading spinner).');
   });
 
-console.log("App: This line runs immediately while waiting for the promise!\n");
-
-
+// This demonstrates that promises are asynchronous.
+console.log('App: this line runs immediately while waiting for the promise!\n');
 
 const checkInventory = new Promise((resolve, reject) => {
-  const itemInStock = false; // Note: this is FALSE!
+  // Set this to true to see the success path.
+  const itemInStock = false;
 
   if (itemInStock) {
-    resolve("Item is available! Proceeding to checkout.");
-  } else {
-    reject("Out of stock! Cannot complete purchase.");
+    // Resolve when the item is available.
+    resolve('Item is available! Proceeding to checkout.');
+    return;
   }
+
+  // Reject when the item is out of stock.
+  reject(new Error('Out of stock! Cannot complete purchase.'));
 });
 
 checkInventory
   .then((message) => {
-    console.log("THEN: " + message);
+    // The success handler receives the resolved message.
+    console.log('THEN: ' + message);
   })
   .catch((error) => {
-    console.log("CATCH: " + error);
+    // The error handler receives the rejection reason.
+    console.log('CATCH: ' + error.message);
   })
   .finally(() => {
-    console.log("FINALLY: Inventory check finished.");
+    // Cleanup or final UI changes can happen here.
+    console.log('FINALLY: inventory check finished.');
   });

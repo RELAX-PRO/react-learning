@@ -1,0 +1,107 @@
+module.exports = {
+    JavaScriptFoundations: {
+        EssentialSyntax: [
+            'Variables',
+            'Data types',
+            'Operators',
+            'Control structures',
+            'Functions',
+            'Template literals',
+        ],
+        ModernES6Features: [
+            'Destructuring',
+            'Spread & rest',
+            'Modules',
+            'Classes',
+            'Promises',
+            'Async Await',
+        ],
+    },
+    ReactCoreConcepts: {
+        ComponentArchitecture: [
+            'Functional components',
+            'Component composition',
+            'Props passing',
+            'Prop validation',
+            'Component lifecycle',
+            'Virtual DOM',
+            'Rendering elements',
+        ],
+        StateManagement: [
+            'State initialization',
+            'State updates',
+            'Immutability patterns',
+            'Lifting state up',
+            'State batching',
+            'Functional updates',
+            'Event handling',
+        ],
+    },
+    HooksFundamentals: {
+        BuiltInHooks: [
+            'useState hook',
+            'useEffect hook',
+            'useContext hook',
+            'useRef hook',
+            'useMemo hook',
+            'useCallback hook',
+            'useReducer hook',
+        ],
+    },
+    StylingApproaches: {
+        StylingMethods: [
+            'Standard CSS',
+            'CSS Modules',
+            'SASS Integration',
+            'Tailwind CSS',
+            'Styled components',
+            'UI component libraries',
+            'CSS variables',
+        ],
+    },
+    DataFetching: {
+        NetworkRequests: [
+            'Fetch API',
+            'Axios client',
+            'Handling promises',
+            'Loading states',
+            'Error handling',
+            'Data normalization',
+            'Effect clean up',
+        ],
+    },
+    Navigation: {
+        RoutingBasics: [
+            'Route definitions',
+            'Nested routes',
+            'Link navigation',
+            'Programmatic navigation',
+            'Route parameters',
+            'Query strings',
+            'Protected routes',
+        ],
+    },
+    GlobalStates: {
+        StatePatterns: [
+            'Context API',
+            'Redux Toolkit',
+            'Zustand store',
+            'Jotai atoms',
+            'Recoil states',
+            'Prop drilling avoidance',
+            'Global data persistence',
+        ],
+    },
+    FormAndValidation: {
+        InputManagement: [
+            'Controlled components',
+            'Uncontrolled components',
+            'Form validation',
+            'Input masking',
+            'Submission handling',
+            'Select elements',
+            'Checkbox handling',
+        ],
+        status: 'planned - keep current implementation untouched for now',
+    },
+};

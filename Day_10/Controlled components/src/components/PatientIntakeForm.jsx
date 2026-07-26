@@ -8,7 +8,6 @@ export const PatientIntakeForm = () => {
   // 1. Single Source of Truth initialized with clean empty strings:
   const [patientName, setPatientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [spherePower, setSpherePower] = useState("");
 
   // 2. Controlled Handler: Prevent numbers in patient names instantly!
   const handleNameChange = (e) => {

@@ -1,4 +1,16 @@
-# 📝 دليل المراجعة السريع: التعامل مع localStorage في React
+# Local Storage
+
+This folder explains browser storage for persistent key-value data.
+
+## What to learn
+
+- Saving and reading strings
+- Serializing objects safely
+
+## Practice checklist
+
+- Save one value
+- Read it back after reload# 📝 دليل المراجعة السريع: التعامل مع localStorage في React
 
 > **الهدف:** حفظ بيانات التطبيق (مثل: الوضع الليلي، سلة المشتريات، الملاحظات) داخل متصفح المستخدم لكي لا تضيع عند عمل تحديث للصفحة (Refresh) أو إغلاق المتصفح.
 

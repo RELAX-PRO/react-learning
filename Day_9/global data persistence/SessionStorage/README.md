@@ -1,4 +1,15 @@
-# 📑 دليل المراجعة السريع: التعامل مع sessionStorage في React
+# Session Storage
+
+This folder explains temporary browser storage that survives refresh but not tab closure.
+
+## What to learn
+
+- Session-scoped persistence
+- When it is better than localStorage
+
+## Practice checklist
+
+- Save one temporary value# 📑 دليل المراجعة السريع: التعامل مع sessionStorage في React
 
 > **الهدف:** حفظ البيانات المؤقتة والحساسة (مثل: مسودة نموذج يتم تعبئته الآن، خطوات دفع إلكتروني) خلال **جلسة التبويب الحالي فقط** لضمان الأمان وعزل التبويبات عن بعضها.
 

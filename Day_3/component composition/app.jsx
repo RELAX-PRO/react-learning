@@ -6,10 +6,12 @@ import AnalyticsDashboard from './AnalyticsDashboard.jsx';
 
 const App = () => {
   return (
-    <ApplicationLayout 
+    <ApplicationLayout
       topNavbarSlot={<NavigationMenu title="Admin Portal" />}
       leftSidebarSlot={<UserProfileSidebar username="Majed" role="Admin" />}
       mainContentSlot={<AnalyticsDashboard />}
     />
   );
 };
+
+export default App;

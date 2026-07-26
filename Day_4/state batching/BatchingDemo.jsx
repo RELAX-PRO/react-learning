@@ -8,23 +8,22 @@ const BatchingDemo = () => {
   const [activeFlag, setActiveFlag] = useState(false);
   const [statusText, setStatusText] = useState("Idle");
 
-  // This log helps us count how many times React rendered the screen!
+  // This log lets us see when React actually re-renders.
   console.log("🎨 COMPONENT RENDERED! Presenting UI to user...");
 
   const handleExecuteAllUpdates = () => {
-    console.log("⚡ Button Clicked! Triggering 3 state updates now...");
-    
-    // Order 1 to the Waiter:
+    console.log("⚡ Button clicked! Triggering 3 state updates now...");
+
+    // Use a functional update when the next value depends on the previous one.
     setCount(prev => prev + 1);
-    
-    // Order 2 to the Waiter:
+
+    // Independent updates can be written directly.
     setActiveFlag(true);
-    
-    // Order 3 to the Waiter:
+
+    // Another independent state update.
     setStatusText("Processing Data");
-    
-    // Despite calling 3 setter functions, React does NOT render 3 times!
-    // It groups them all into ONE single re-render after this function finishes!
+
+    // React batches these updates into a single render.
   };
 
   return (
@@ -32,9 +31,9 @@ const BatchingDemo = () => {
       <h3>Counter: {count}</h3>
       <p>Flag Status: {activeFlag ? "🟢 Active" : "🔴 Inactive"}</p>
       <p>System Status: [{statusText}]</p>
-      
-      <button 
-        onClick={handleExecuteAllUpdates} 
+
+      <button
+        onClick={handleExecuteAllUpdates}
         className="mt-4 bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 font-bold"
       >
         Trigger 3 Updates at Once 🚀

@@ -1,94 +1,52 @@
-// A ready-made Promise that simulates fetching user details from an API after 2 seconds:
+// Start with a Promise so the async/await example has something real to wait for.
 const getUserFromAPI = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve({ username: "Majed_IQ", role: "React Engineer" });
+      resolve({ username: 'Majed_IQ', role: 'React Engineer' });
     }, 2000);
   });
 };
 
-// --- 1. THE OLD WAY (Using .then chains) ---
+// The old way: promise chaining.
 const loadUserOldWay = () => {
-  console.log("Old Way: Fetching user...");
-  
+  console.log('Old way: fetching user...');
+
   getUserFromAPI().then((userData) => {
-    // Notice how we are inside a nested callback function!
-    console.log("Old Way: User received:", userData.username);
+    console.log('Old way: user received:', userData.username);
   });
 };
 
-// --- 2. THE MODERN WAY (Using Async / Await) ---
-// Notice the 'async' keyword before the arrow () =>
+// The modern way: async / await keeps the code readable from top to bottom.
 const loadUserModernWay = async () => {
-  console.log("Modern Way: Fetching user...");
-  
-  // Notice the 'await' keyword! It PAUSES here for 2 seconds, extracts the real data,
-  // and puts it cleanly into the 'userData' variable without any callbacks or .then()!
+  console.log('Modern way: fetching user...');
+
+  // await pauses this function until the Promise resolves.
   const userData = await getUserFromAPI();
-  
-  // This line only runs AFTER the promise is 100% resolved!
-  console.log("Modern Way: User received:", userData.username);
+  console.log('Modern way: user received:', userData.username);
 };
 
-// loadUserModernWay();
+// Run the example so the difference is visible in the console.
+loadUserModernWay();
 
-
-// A real-world pattern for fetching data cleanly and safely in React:
+// Real-world pattern: wrap awaited work in try/catch/finally.
 const fetchDashboardData = async () => {
-  console.log("UI: Show Loading Spinner 🌀");
+  console.log('UI: show loading spinner 🌀');
 
   try {
-    // 1. Try to pause and wait for the API response
-    console.log("Network: Contacting server...");
-    const response = await getUserFromAPI(); 
-    
-    // 2. If successful, update our React UI with the real data!
-    console.log("SUCCESS: Data loaded!", response);
+    // The request lives inside the try block because it may fail.
+    console.log('Network: contacting server...');
+    const response = await getUserFromAPI();
+
+    console.log('SUCCESS: data loaded!', response);
     console.log(`Welcome to your dashboard, ${response.username}!`);
-
   } catch (error) {
-    // 3. If any Promise gets rejected or Wi-Fi drops, jump here immediately!
-    console.error("ERROR CAUGHT: Could not fetch dashboard data.", error);
-    console.log("UI: Show Error Banner 🚨");
-
+    // Any thrown error or rejected Promise lands here.
+    console.error('ERROR CAUGHT: could not fetch dashboard data.', error);
+    console.log('UI: show error banner 🚨');
   } finally {
-    // 4. Regardless of success or failure, always hide the spinner at the end
-    console.log("UI: Hide Loading Spinner 🛑");
+    // finally is perfect for cleanup, regardless of success or failure.
+    console.log('UI: hide loading spinner 🛑');
   }
 };
+
 fetchDashboardData();
-
-
-
-
-const updateCurrencyUI = () => {
-  console.log("Starting update...");
-
-  fetchCurrencyRate("USD")
-    .then((rate) => {
-      console.log("New rate fetched: " + rate);
-      return calculateTax(rate);
-    })
-    .then((taxedAmount) => {
-      console.log("Final price with tax: " + taxedAmount);
-    })
-    .catch((err) => {
-      console.log("Error updating currency: " + err);
-    })
-    .finally(() => {
-      console.log("Update process finished.");
-    });
-};
-const updateCurrencyUIAsync = async () => {
-  console.log("Starting update...");
-  const rate = await fetchCurrencyRate("USD");
-  const taxedAmount = await calculateTax(rate);
-  try {
-    console.log("New rate fetched: " + rate);
-    console.log("Final price with tax: " + taxedAmount);
-  } catch (err) {
-    console.log("Error updating currency: " + err);
-  } finally {
-    console.log("Update process finished.");
-  }
-};

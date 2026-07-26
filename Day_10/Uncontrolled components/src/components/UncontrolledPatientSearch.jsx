@@ -5,28 +5,30 @@
 import React, { useRef } from 'react';
 
 export const UncontrolledPatientSearch = () => {
-  // 1. إنشاء أسلاك التوصيل المباشرة للـ DOM (بدون تخزين أي بيانات في الذاكرة!):
+  // Refs point directly to DOM inputs without using React state for every keystroke.
   const patientIdRef = useRef(null);
   const searchReasonRef = useRef(null);
 
-  // 2. دالة تنطلق فقط وإذا فقط عند الضغط على زر "بحث" (Submit):
+  // Read the values only when the form is submitted.
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // منع المتصفح من تحديث الصفحة
+    // Prevent the browser from reloading the page.
+    e.preventDefault();
 
-    // 🪄 السحر: سحب القيم مباشرة من عناصر الـ DOM في اللحظة الأخيرة فقط!
+    // Read the live values from the DOM at submit time.
     const enteredId = patientIdRef.current.value;
     const enteredReason = searchReasonRef.current.value;
 
-    console.log("🚀 تم سحب البيانات من الـ DOM مباشرة دون إزعاج React:");
+    // Log the collected values to prove the ref-based approach works.
+    console.log('Read values directly from the DOM:');
     console.log({ id: enteredId, reason: enteredReason });
 
-    // يمكنك إرسال البيانات مباشرة للسيرفر هنا:
+    // Submit to an API here when the lesson becomes connected to a backend.
     // axios.post('/api/search', { id: enteredId, reason: enteredReason });
   };
 
   return (
     <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl max-w-md mx-auto text-white font-mono shadow-2xl">
-      <h2 className="text-xl font-bold text-amber-400 mb-6">🔍 التفتيش السريع (Uncontrolled)</h2>
+      <h2 className="text-xl font-bold text-amber-400 mb-6">🔍 Quick Search (Uncontrolled)</h2>
 
       <form onSubmit={handleSearchSubmit} className="space-y-4">
         {/* --- FIELD 1: UNCONTROLLED PATIENT ID --- */}
@@ -34,8 +36,8 @@ export const UncontrolledPatientSearch = () => {
           <label className="block text-xs text-slate-400 mb-1">رقم ملف المريض:</label>
           <input
             type="text"
-            ref={patientIdRef}          // 👈 ربط سلك الـ DOM مباشرة
-            defaultValue="ID-"          // 👈 في Uncontrolled نستخدم defaultValue بدل value
+            ref={patientIdRef}          // Attach the DOM node to the ref.
+            defaultValue="ID-"          // Uncontrolled inputs use defaultValue.
             placeholder="مثال: ID-9842"
             className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-sm focus:border-amber-500 focus:outline-none"
           />
@@ -46,7 +48,7 @@ export const UncontrolledPatientSearch = () => {
           <label className="block text-xs text-slate-400 mb-1">سبب الاستعلام السريع:</label>
           <input
             type="text"
-            ref={searchReasonRef}       // 👈 ربط سلك الـ DOM مباشرة
+            ref={searchReasonRef}       // Attach the DOM node to the second ref.
             placeholder="مثال: مراجعة قياس النظر..."
             className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-sm focus:border-amber-500 focus:outline-none"
           />

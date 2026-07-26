@@ -27,12 +27,12 @@ const ThemeController = () => {
   };
 
   return (
-    <div style={{ padding: '20px', backgroundColor: 'var(--color-surface)', color: 'var(--text-main)', borderRadius: 'var(--card-radius)' }}>
+    <div style={{ padding: '20px', backgroundColor: 'var(--color-surface)', color: 'var(--color-text-main)', borderRadius: 'var(--card-radius)' }}>
       <h3 style={{ margin: '0 0 10px 0' }}>👁️ Clinic Visual System</h3>
       <p style={{ fontSize: '0.9rem', opacity: 0.8 }}>
         Current Theme: <strong>{isDarkMode ? "Dark Mode 🌙" : "Light Mode ☀️"}</strong>
       </p>
-      
+
       <button
         onClick={toggleClinicTheme}
         style={{

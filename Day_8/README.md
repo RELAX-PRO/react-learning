@@ -1,0 +1,35 @@
+# Navigation
+
+This day teaches routing in React applications and how users move between screens.
+
+## Learning order
+
+1. Route definitions
+2. Nested routes
+3. Link navigation
+4. Programmatic navigation
+5. Route parameters
+6. Query strings
+7. Protected routes
+
+## What to learn here
+
+- How routes map URLs to screens
+- How nested layouts work
+- How to navigate with links and code
+- How to read route params and query strings
+- How to guard private pages
+
+## Before you start
+
+- A router is the system that decides which screen should appear for each URL.
+- BrowserRouter is the wrapper that connects React Router to the browser address bar.
+- Routes is the container that checks the URL and chooses the right Route.
+- Route is the rule that says: when the URL matches this path, render this component.
+
+## Practice checklist
+
+- Create one route map
+- Add one nested route
+- Navigate with a link and with code
+- Read one parameter from the URL
