@@ -2,15 +2,17 @@
 
 This day is the bridge between React components and reusable logic. The focus is not memorizing hooks, but choosing the right hook for the right job.
 
-## Learning order
+## Learning order & Folder Structure
 
-1. useState hook
-2. useEffect hook
-3. useContext hook
-4. useRef hook
-5. useMemo hook
-6. useCallback hook
-7. useReducer hook
+The concepts for this day are organized into the following sequential subfolders. Each subfolder contains a dedicated `README.md` with detailed explanations and a **Pros & Cons** section for the respective hook:
+
+1. `01_useState` - Managing local UI state
+2. `02_useEffect` - Handling side effects and component lifecycle
+3. `03_useContext` - Managing shared state and avoiding prop drilling
+4. `04_useRef` - Accessing the DOM and keeping stable mutable values
+5. `05_useMemo` - Caching expensive calculations
+6. `06_useCallback` - Caching function references
+7. `07_useReducer` - Managing complex state objects and transition rules
 
 ## Decision guide
 

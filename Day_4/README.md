@@ -2,15 +2,15 @@
 
 This day focuses on how components change over time and how React keeps updates predictable.
 
-## Topics in this day
+## Topics in this day (Learning Order)
 
-- Event handling
-- functional updates
-- Immutability patterns
-- lifting state up
-- state batching
-- State initialization
-- State updates
+1. [Event Handling](./01_Event_handling)
+2. [Functional Updates](./02_functional_updates)
+3. [Immutability Patterns](./03_Immutability_patterns)
+4. [Lifting State Up](./04_lifting_state_up)
+5. [State Batching](./05_state_batching)
+6. [State Initialization](./06_State_initialization)
+7. [State Updates](./07_State_updates)
 
 ## What the student should learn
 
@@ -24,9 +24,7 @@ This day focuses on how components change over time and how React keeps updates 
 
 This is the point where students stop treating state as a random variable and start using it as the source of truth for UI behavior.
 
-## Practice checklist
+## Summary: Pros & Cons of State Management
 
-- Add a click handler that updates state
-- Rewrite one update using a functional form
-- Move shared state to the nearest common parent
-- Update an array without mutation
+**Pros:** Provides a predictable and unified way to manage application behavior and synchronize data with the UI.
+**Cons:** The learning curve (e.g. understanding immutability, closures, asynchronous updates) can be initially challenging.

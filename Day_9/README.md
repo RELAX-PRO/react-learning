@@ -20,6 +20,14 @@ This day explains how to share state across a React app without passing props th
 - How to choose between Redux, Zustand, Jotai, and Recoil
 - How to persist global state safely
 
+## State Management Pros & Cons Summary
+
+- **Context API**: Great for low-frequency updates (themes), but causes widespread re-renders for fast-changing data.
+- **Redux Toolkit**: Highly scalable and predictable, but introduces boilerplate and complexity.
+- **Zustand**: Lightweight, simple API without context providers, but less rigid structure.
+- **Jotai / Recoil**: Excellent for derived, atomic state and minimizing re-renders, though requires a different mental model (bottom-up instead of top-down).
+- **Persistence**: Crucial for UX, but requires care around storage limits and sensitive data.
+
 ## Why it matters
 
 Global state is one of the biggest architecture decisions in a React app. Picking the wrong tool too early can make a project harder to maintain than the problem itself.

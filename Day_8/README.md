@@ -1,4 +1,4 @@
-# Navigation
+﻿# Navigation
 
 This day teaches routing in React applications and how users move between screens.
 
@@ -33,3 +33,13 @@ This day teaches routing in React applications and how users move between screen
 - Add one nested route
 - Navigate with a link and with code
 - Read one parameter from the URL
+## Overview of React Router
+
+**Pros:**
+- Provides a standard way to implement routing in React applications.
+- Supports both simple routing and complex nested layouts.
+- Integrates well with the browser's history API.
+
+**Cons:**
+- Upgrades between major versions (e.g., v5 to v6) can introduce breaking changes and require significant refactoring.
+- The concept of nested routing can be challenging for beginners to grasp initially.

@@ -4,18 +4,12 @@ This folder is the base layer of the learning path. Before React makes sense, th
 
 ## Learning order
 
-1. Variables
-2. Data types
-3. Operators
-4. Control structures
-5. Functions
-6. Template literals
-7. Destructuring
-8. Spread & rest
-9. Modules
-10. Classes
-11. Promises
-12. Async Await
+1. Variables (`01_Variables/`)
+2. Data types (`02_Data_Types/`)
+3. Operators (`03_Operators/`)
+4. Control structures (`04_Control_Structures/`)
+5. Functions (`05_Functions/`)
+6. Template literals (`06_Template_Literals/`)
 
 ## What to focus on
 

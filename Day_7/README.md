@@ -4,13 +4,13 @@ This day teaches how React apps talk to APIs and handle network state responsibl
 
 ## Learning order
 
-1. Fetch API
-2. Axios client
-3. Handling promises
-4. Loading states
-5. Error handling
-6. Data normalization
-7. Effect cleanup
+1. [01_Fetch_API](./01_Fetch_API/)
+2. [02_Axios_client](./02_Axios_client/)
+3. [03_Handling_Promises](./03_Handling_Promises/)
+4. [04_Loading_states](./04_Loading_states/)
+5. [05_Error_handling](./05_Error_handling/)
+6. [06_Data_normalization](./06_Data_normalization/)
+7. [07_Effect_cleanup](./07_Effect_cleanup/)
 
 ## What to learn here
 
