@@ -1,11 +1,15 @@
-// =========================================================================
-// File: src/components/ComprehensivePatientRegistration.jsx
-// Description: Multi-field form managed by a SINGLE unified state object
-// =========================================================================
 import React, { useState } from 'react';
 
+/**
+ * Example 2: Comprehensive Controlled Components
+ * 
+ * When forms get larger, creating a separate state variable for every input
+ * (e.g., const [name, setName], const [age, setAge]) becomes messy.
+ * 
+ * Instead, we use a single unified state object and a "Universal Change Handler".
+ */
 export const ComprehensivePatientRegistration = () => {
-  // 1. Single unified state object holding all patient data fields:
+  // 1. Single unified state object holding all patient data fields
   const [patientData, setPatientData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -13,19 +17,19 @@ export const ComprehensivePatientRegistration = () => {
     address: ""
   });
 
-  // 2. The Universal Change Handler (One engine to rule them all! 🪄):
+  // 2. The Universal Change Handler:
+  // This single function handles every input field in the form!
   const handleInputChange = (e) => {
-    // Destructure name and value directly from the input target:
+    // Destructure the 'name' attribute and the new 'value' from the input
     const { name, value } = e.target;
 
-    // Use ES6 Computed Property Names [name] with the Spread Operator:
     setPatientData((prevData) => ({
-      ...prevData,      // 1st: Keep all existing fields untouched
-      [name]: value     // 2nd: Overwrite ONLY the field that just triggered the event
+      ...prevData,      // Spread operator keeps all existing fields untouched
+      [name]: value     // Computed property overwrites ONLY the field that changed
     }));
   };
 
-  // 3. Reset all fields instantly with a single empty object:
+  // 3. Reset all fields instantly with a single empty object
   const handleResetForm = () => {
     setPatientData({
       fullName: "",
@@ -45,9 +49,9 @@ export const ComprehensivePatientRegistration = () => {
           <label className="block text-xs text-slate-400 mb-1">Patient Full Name:</label>
           <input
             type="text"
-            name="fullName"                  // 👈 STRICT MUST: Matches the object key exact string
-            value={patientData.fullName}     // 👈 Reads from the unified object
-            onChange={handleInputChange}     // 👈 Calls the Universal Handler
+            name="fullName"                  // MUST MATCH the exact key in state object
+            value={patientData.fullName}     // Reads from the unified object
+            onChange={handleInputChange}     // Calls the Universal Handler
             placeholder="e.g. Ahmed Mahmoud"
             className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-sm focus:border-cyan-500 focus:outline-none"
           />
@@ -58,7 +62,7 @@ export const ComprehensivePatientRegistration = () => {
           <label className="block text-xs text-slate-400 mb-1">Phone Number:</label>
           <input
             type="text"
-            name="phoneNumber"               // 👈 Dynamic Key Target
+            name="phoneNumber"               // Targets 'phoneNumber' key in state
             value={patientData.phoneNumber}
             onChange={handleInputChange}
             placeholder="07900000000"
@@ -71,7 +75,7 @@ export const ComprehensivePatientRegistration = () => {
           <label className="block text-xs text-slate-400 mb-1">Patient Age:</label>
           <input
             type="number"
-            name="age"                       // 👈 Dynamic Key Target
+            name="age"                       // Targets 'age' key in state
             value={patientData.age}
             onChange={handleInputChange}
             placeholder="e.g. 35"
@@ -84,7 +88,7 @@ export const ComprehensivePatientRegistration = () => {
           <label className="block text-xs text-slate-400 mb-1">Residential Address:</label>
           <input
             type="text"
-            name="address"                   // 👈 Dynamic Key Target
+            name="address"                   // Targets 'address' key in state
             value={patientData.address}
             onChange={handleInputChange}
             placeholder="City, District, Street..."
@@ -93,7 +97,8 @@ export const ComprehensivePatientRegistration = () => {
         </div>
       </div>
 
-      {/* --- LIVE STATE DEBUGGER (Enterprise Visibility) --- */}
+      {/* --- LIVE STATE DEBUGGER --- */}
+      {/* This helps students visualize how the state object updates in real-time */}
       <div className="mt-6 p-4 bg-slate-950/80 rounded-xl border border-dashed border-slate-700">
         <span className="text-[10px] text-amber-400 font-bold block mb-1">⚡ LIVE UNIFIED STATE OBJECT:</span>
         <pre className="text-xs text-emerald-400 overflow-x-auto leading-relaxed">
@@ -111,7 +116,7 @@ export const ComprehensivePatientRegistration = () => {
         </button>
         <button
           disabled={!patientData.fullName || !patientData.phoneNumber}
-          className="w-2/3 py-3 bg-cyan-600 hover:bg-cyan-500 disabled:bg-slate-800 disabled:text-slate-600 rounded-xl font-bold text-sm transition cursor-pointer"
+          className="w-2/3 py-3 bg-cyan-600 hover:bg-cyan-500 disabled:bg-slate-800 disabled:text-slate-600 rounded-xl font-bold text-sm transition cursor-pointer disabled:cursor-not-allowed"
         >
           ✅ Save Patient Record
         </button>

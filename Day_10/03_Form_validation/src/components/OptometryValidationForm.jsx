@@ -1,106 +1,111 @@
-// =========================================================================
-// File: src/components/OptometryValidationForm.jsx
-// Description: Manual Clean Form Validation in Vanilla React
-// =========================================================================
 import React, { useState } from 'react';
 
+/**
+ * Example 1: Manual Form Validation in Vanilla React
+ * 
+ * We use an `errors` state object to track validation messages.
+ * When the form is submitted, we run the validation logic. If errors exist, 
+ * we update the `errors` state to show them in the UI and prevent submission.
+ */
 export const OptometryValidationForm = () => {
-  // 1. كائن حفظ مدخلات النموذج:
+  // 1. State for form inputs
   const [formData, setFormData] = useState({
     patientName: "",
     email: "",
-    lensPower: "" // قوة العدسة (مثلاً: -1.50 أو +2.00)
+    lensPower: "" // e.g., -1.50 or +2.00
   });
 
-  // 2. كائن حفظ رسائل الأخطاء (يبدأ فارغاً تماماً):
+  // 2. State for error messages (Starts empty)
   const [errors, setErrors] = useState({});
 
-  // 3. المحرك العام لتحديث البيانات (Universal Handler):
+  // 3. Universal Change Handler
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // 💡 ميزة UX رائعة: مسح رسالة الخطأ فوراً بمجرد أن يبدأ المستخدم بتصحيح حقله!
+    // UX Tip: Clear the specific error message as soon as the user starts typing to fix it!
     if (errors[name]) {
       setErrors(prevErrors => ({ ...prevErrors, [name]: "" }));
     }
   };
 
-  // 4. دالة التحقق المركزية (The Validation Engine):
+  // 4. The Validation Engine
+  // Returns true if valid, false if invalid.
   const validateForm = () => {
-    const newErrors = {}; // نبدأ بكائن أخطاء مؤقت
+    const newErrors = {}; // Temporary error object
 
-    // شرط 1: الاسم يجب ألا يقل عن 3 أحرف
+    // Rule 1: Name must be at least 3 characters
     if (!formData.patientName.trim()) {
-      newErrors.patientName = "اسم المريض مطلوب إجبارياً!";
+      newErrors.patientName = "Patient name is required!";
     } else if (formData.patientName.trim().length < 3) {
-      newErrors.patientName = "الاسم يجب أن يتكون من 3 أحرف على الأقل.";
+      newErrors.patientName = "Name must be at least 3 characters long.";
     }
 
-    // شرط 2: التحقق من صيغة البريد الإلكتروني عبر Regex بسيط
+    // Rule 2: Basic Regex Email Validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email) {
-      newErrors.email = "البريد الإلكتروني مطلوب لإرسال الفاتورة!";
+      newErrors.email = "Email is required for billing.";
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "صيغة البريد الإلكتروني غير صحيحة (مثال: name@domain.com).";
+      newErrors.email = "Invalid email format (e.g., name@domain.com).";
     }
 
-    // شرط 3: قوة العدسة يجب أن تكون رقماً بین -20.00 و +20.00
+    // Rule 3: Lens Power must be a number between -20.00 and +20.00
     const powerNum = parseFloat(formData.lensPower);
     if (!formData.lensPower) {
-      newErrors.lensPower = "يرجى إدخال قياس العدسة!";
+      newErrors.lensPower = "Please enter the lens power.";
     } else if (isNaN(powerNum) || powerNum < -20 || powerNum > 20) {
-      newErrors.lensPower = "قياس العدسة يجب أن يكون رقماً واقعياً بين -20.00 و +20.00!";
+      newErrors.lensPower = "Power must be a valid number between -20.00 and +20.00.";
     }
 
-    // تحديث كائن الأخطاء في الشاشة
+    // Update the UI with any errors found
     setErrors(newErrors);
 
-    // 🪄 السر: إذا كان كائن الأخطاء فارغاً، فهذا يعني أن النموذج سليم 100%!
+    // If the object has no keys, there are no errors!
     return Object.keys(newErrors).length === 0;
   };
 
-  // 5. دالة الإرسال للسيرفر عند التقديم:
+  // 5. Submit Handler
   const handleSubmit = (e) => {
     e.preventDefault();
     
     const isFormValid = validateForm();
     if (isFormValid) {
-      console.log("✅ البيانات سليمـة 100%! جاري الإرسال للسيرفر...", formData);
-      alert("تم حفظ بيانات المريض بنجاح! 👁️✨");
-      // إعادة تصفير النموذج
+      console.log("✅ Data is 100% valid! Sending to server...", formData);
+      alert("Patient record saved successfully! 👓✨");
+      
+      // Reset form on success
       setFormData({ patientName: "", email: "", lensPower: "" });
     } else {
-      console.log("❌ يوجد أخطاء في النموذج، تم إيقاف الإرسال!");
+      console.log("❌ Form contains errors, submission blocked.");
     }
   };
 
   return (
     <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl max-w-md mx-auto text-white font-mono shadow-2xl">
-      <h2 className="text-xl font-extrabold text-cyan-400 mb-6">🩺 تسجيل قياس النظر (مع التحقق)</h2>
+      <h2 className="text-xl font-extrabold text-cyan-400 mb-6">🩺 Vision Check Registration</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* --- FIELD 1: PATIENT NAME --- */}
         <div>
-          <label className="block text-xs text-slate-400 mb-1">اسم المريض:</label>
+          <label className="block text-xs text-slate-400 mb-1">Patient Name:</label>
           <input
             type="text"
             name="patientName"
             value={formData.patientName}
             onChange={handleChange}
-            placeholder="مثال: أحمد محمود"
-            // تغيير لون الإطار للأحمر إذا كان هناك خطأ:
+            placeholder="e.g. John Doe"
+            // Dynamic styling: Turn the border red if there is an error
             className={`w-full p-3 bg-slate-950 border rounded-xl text-sm focus:outline-none transition ${
               errors.patientName ? "border-red-500 focus:border-red-500" : "border-slate-700 focus:border-cyan-500"
             }`}
           />
-          {/* إظهار رسالة الخطأ إن وُجدت */}
+          {/* Display the error message conditionally */}
           {errors.patientName && <p className="text-red-400 text-xs mt-1">⚠️ {errors.patientName}</p>}
         </div>
 
         {/* --- FIELD 2: EMAIL --- */}
         <div>
-          <label className="block text-xs text-slate-400 mb-1">البريد الإلكتروني:</label>
+          <label className="block text-xs text-slate-400 mb-1">Email Address:</label>
           <input
             type="text"
             name="email"
@@ -116,13 +121,13 @@ export const OptometryValidationForm = () => {
 
         {/* --- FIELD 3: LENS POWER --- */}
         <div>
-          <label className="block text-xs text-slate-400 mb-1">قياس العدسة (SPH):</label>
+          <label className="block text-xs text-slate-400 mb-1">Lens Power (SPH):</label>
           <input
             type="text"
             name="lensPower"
             value={formData.lensPower}
             onChange={handleChange}
-            placeholder="مثال: -2.50 أو +1.25"
+            placeholder="e.g. -2.50 or +1.25"
             className={`w-full p-3 bg-slate-950 border rounded-xl text-sm focus:outline-none transition ${
               errors.lensPower ? "border-red-500 focus:border-red-500" : "border-slate-700 focus:border-cyan-500"
             }`}
@@ -134,7 +139,7 @@ export const OptometryValidationForm = () => {
           type="submit"
           className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 rounded-xl font-bold text-sm transition cursor-pointer mt-4"
         >
-          ✅ اعتماد وحفظ القياس
+          ✅ Validate & Save
         </button>
       </form>
     </div>

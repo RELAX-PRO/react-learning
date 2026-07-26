@@ -8,30 +8,30 @@ export const OptometryMaskedInputs = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [frameSerial, setFrameSerial] = useState("");
 
-  // 1. قناع رقم الهاتف العراقي (مثال: 0790-123-4567)
+  // 1. Iraqi Phone Number Mask (Example: 0790-123-4567)
   const handlePhoneMask = (e) => {
-    // أ: تنظيف النص من أي شيء ليس رقماً
+    // A: Clean the input by removing any non-digit characters
     const rawDigits = e.target.value.replace(/\D/g, '');
 
-    // ب: منع تجاوز 11 رقماً
+    // B: Prevent input from exceeding 11 digits
     const trimmed = rawDigits.slice(0, 11);
 
-    // ج: التشكيل الديناميكي بناءً على طول النص
+    // C: Dynamically format the string based on its length
     let formatted = trimmed;
     if (trimmed.length > 7) {
-      // بعد الرقم السابع: 0790-123-4567
+      // After the 7th digit: 0790-123-4567
       formatted = `${trimmed.slice(0, 4)}-${trimmed.slice(4, 7)}-${trimmed.slice(7)}`;
     } else if (trimmed.length > 4) {
-      // بعد الرقم الرابع: 0790-123
+      // After the 4th digit: 0790-123
       formatted = `${trimmed.slice(0, 4)}-${trimmed.slice(4)}`;
     }
 
     setPhoneNumber(formatted);
   };
 
-  // 2. قناع الرمز التسلسلي للنظارة (مثال: OPT-2026-8842)
+  // 2. Glasses Frame Serial Code Mask (Example: OPT-2026-8842)
   const handleSerialMask = (e) => {
-    // أ: تنظيف النص والإبقاء على الأرقام والحروف فقط مع تحويلها لـ Capital
+    // A: Clean input, keeping only letters/numbers and converting to Uppercase
     const rawAlphaNum = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
     const trimmed = rawAlphaNum.slice(0, 11); // 3 letters + 4 year digits + 4 code digits
 
@@ -47,12 +47,12 @@ export const OptometryMaskedInputs = () => {
 
   return (
     <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl max-w-md mx-auto text-white font-mono shadow-2xl">
-      <h2 className="text-xl font-extrabold text-cyan-400 mb-6">🎭 أقنعة التنسيق الحية (Input Masking)</h2>
+      <h2 className="text-xl font-extrabold text-cyan-400 mb-6">🎭 Live Format Masks (Manual Input Masking)</h2>
 
       <div className="space-y-6">
         {/* --- FIELD 1: PHONE MASK --- */}
         <div>
-          <label className="block text-xs text-slate-400 mb-1">رقم هاتف المريض (تنسيق تلقائي):</label>
+          <label className="block text-xs text-slate-400 mb-1">Patient Phone Number (Auto-formatting):</label>
           <input
             type="text"
             value={phoneNumber}
@@ -61,13 +61,13 @@ export const OptometryMaskedInputs = () => {
             className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-sm tracking-wider focus:border-cyan-500 focus:outline-none transition"
           />
           <span className="text-[10px] text-slate-500 block mt-1">
-            القيمة المحفوظة في الذاكرة: <code className="text-emerald-400">"{phoneNumber}"</code>
+            State value saved in memory: <code className="text-emerald-400">"{phoneNumber}"</code>
           </span>
         </div>
 
         {/* --- FIELD 2: FRAME SERIAL MASK --- */}
         <div>
-          <label className="block text-xs text-slate-400 mb-1">الرمز التسلسلي للإطار (Serial Code):</label>
+          <label className="block text-xs text-slate-400 mb-1">Frame Serial Code:</label>
           <input
             type="text"
             value={frameSerial}
@@ -76,7 +76,7 @@ export const OptometryMaskedInputs = () => {
             className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-sm tracking-wider focus:border-cyan-500 focus:outline-none transition"
           />
           <span className="text-[10px] text-slate-500 block mt-1">
-            يتحول تلقائياً لحروف كبيرة ويعزل المقاطع بالشرطة!
+            Automatically converts to uppercase and separates sections with dashes!
           </span>
         </div>
       </div>
