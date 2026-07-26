@@ -1,5 +1,9 @@
 # Global Data Persistence
 
+> **💡 How to Imagine This:**
+> Think of this like saving your progress in a video game. If you turn off the console without saving, you lose everything. Persistence ensures your items and level are right where you left them when you return.
+
+
 This folder explains how app state survives refreshes and browser restarts.
 
 ## What to learn

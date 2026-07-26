@@ -1,5 +1,9 @@
 # Data Fetching
 
+> **💡 How to Imagine This:**
+> Think of data fetching like a mail delivery service. Your React app sends a letter requesting information (the request). While waiting for the postman to return, you might put up a "Checking mail..." sign (loading state). If the postman gets lost, you need a plan for what to tell the user (error handling). And when the mail finally arrives, you neatly sort it into your filing cabinet (normalization) so you can actually read it.
+
+
 This day teaches how React apps talk to APIs and handle network state responsibly.
 
 ## Learning order

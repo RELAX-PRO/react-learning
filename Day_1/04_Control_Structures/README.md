@@ -1,5 +1,8 @@
 # Control Structures
 
+> **💡 How to Imagine This:**
+> Think of Control Structures like directing traffic. Imperative logic (`if/else`, `for`) is like a traffic cop manually stopping and waving each car through an intersection step-by-step. Declarative loops (`Array.map`) and ternaries are like setting up smart roundabouts and dedicated turn lanes: the rules are built into the road itself, making the flow of data continuous and automatic without micromanaging every single car.
+
 This section reviews logic flow control, including conditionals and iterative structures, contrasting imperative approaches with declarative ones.
 
 ## Pros & Cons

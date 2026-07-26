@@ -1,4 +1,7 @@
-﻿# Query Strings
+# Query Strings
+
+> **💡 How to Imagine This:**
+> Think of Query Strings like the filter options when shopping online. When you want to see only red shoes under $50, the URL adds extra details like `?color=red&maxPrice=50` to sort, filter, or customize the page content.
 
 This folder explores Query Strings in React Router.
 

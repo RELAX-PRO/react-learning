@@ -1,5 +1,9 @@
 # Session Storage
 
+> **💡 How to Imagine This:**
+> Think of SessionStorage like a whiteboard in a meeting room. You can write all the temporary notes you want during the meeting, but the moment the meeting is over and everyone leaves (the tab is closed), the whiteboard gets wiped clean.
+
+
 This folder explains temporary browser storage that survives refresh but not tab closure.
 
 ## What to learn

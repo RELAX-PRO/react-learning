@@ -1,5 +1,9 @@
 # Redux Toolkit
 
+> **💡 How to Imagine This:**
+> Think of Redux like a strict bank. You can't just reach into the vault and grab money. You have to fill out a deposit/withdrawal slip (action) and hand it to the teller (reducer), who follows strict rules to update your account balance (state) safely.
+
+
 This folder introduces the modern Redux approach for global state management.
 
 ## What to learn

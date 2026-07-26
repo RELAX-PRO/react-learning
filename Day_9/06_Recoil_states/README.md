@@ -1,5 +1,9 @@
 # Recoil State
 
+> **💡 How to Imagine This:**
+> Think of Recoil like a smart spreadsheet. When you change the value in one cell (atom), any other cells with formulas that rely on it (selectors) automatically recalculate and update in real time.
+
+
 This folder covers Recoil as an atomic state model and explains where it fits in the learning roadmap.
 
 ## What to learn

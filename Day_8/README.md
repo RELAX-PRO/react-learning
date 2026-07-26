@@ -1,4 +1,7 @@
-﻿# Navigation
+# Navigation
+
+> **💡 How to Imagine This:**
+> Think of React Router navigation like a train system in a city. The URLs are the train tracks, the components are the stations, and the Router is the conductor making sure you arrive at the correct destination without ever having to leave the train (reload the page)!
 
 This day teaches routing in React applications and how users move between screens.
 
@@ -33,6 +36,7 @@ This day teaches routing in React applications and how users move between screen
 - Add one nested route
 - Navigate with a link and with code
 - Read one parameter from the URL
+
 ## Overview of React Router
 
 **Pros:**

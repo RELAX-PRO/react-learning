@@ -1,4 +1,7 @@
-﻿# Programmatic Navigation
+# Programmatic Navigation
+
+> **💡 How to Imagine This:**
+> Think of Programmatic Navigation like being chauffeured. Instead of you clicking a button to go somewhere, the code automatically sends you to a new page—like being automatically redirected to a 'Thank You' page right after submitting a form.
 
 This folder explores Programmatic Navigation in React Router.
 

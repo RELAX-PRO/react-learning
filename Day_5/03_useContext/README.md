@@ -1,5 +1,8 @@
 # 03_useContext
 
+> **💡 How to Imagine This:**
+> Think of `useContext` as a global loudspeaker in a building. Instead of passing a message room by room (prop drilling), the loudspeaker broadcasts the message directly to any room (component) that decides to tune in and listen.
+
 ## Overview
 Shared data and prop-drilling avoidance hook.
 

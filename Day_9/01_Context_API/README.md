@@ -1,5 +1,9 @@
 # Context API
 
+> **💡 How to Imagine This:**
+> Imagine a school intercom system. Instead of the principal walking to every single classroom to pass a message, they speak into the intercom, and any classroom that needs to hear it can listen in.
+
+
 This folder teaches the built-in React API for sharing data without prop drilling.
 
 ## What to learn

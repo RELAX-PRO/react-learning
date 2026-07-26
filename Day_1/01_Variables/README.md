@@ -1,5 +1,8 @@
 # Variables
 
+> **💡 How to Imagine This:**
+> Think of variables like labeled storage boxes. `const` is a box locked in place—you can't swap the box itself, but if it holds a backpack (like an object or array), you can still take things in and out of the backpack. `let` is a box where you can safely swap out its contents whenever needed. `var` is like a leaky box that sometimes mysteriously ends up in the wrong room.
+
 This section covers variable declarations in modern JavaScript, focusing on `const` and `let` versus the legacy `var`.
 
 ## Pros & Cons

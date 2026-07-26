@@ -1,5 +1,8 @@
 # Classes
 
+> **💡 How to Imagine This:**
+> Imagine a Class as a cookie cutter, and the objects it creates as the cookies. The cookie cutter defines the exact shape and size (properties and methods), so every time you stamp it into the dough, you get a new cookie that perfectly matches that blueprint.
+
 Classes in ES6 provide a syntactical sugar over JavaScript's existing prototype-based inheritance. They offer a cleaner, more object-oriented way to create objects and deal with inheritance.
 
 ## Pros & Cons

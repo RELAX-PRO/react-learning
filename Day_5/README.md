@@ -1,5 +1,8 @@
 # Hooks Fundamentals
 
+> **💡 How to Imagine This:**
+> Think of React Hooks as a specialized toolkit for your functional components. Just like a carpenter uses a hammer for nails and a screwdriver for screws, you pick specific hooks to add memory, handle side effects, or optimize performance without having to build a whole new class from scratch.
+
 This day is the bridge between React components and reusable logic. The focus is not memorizing hooks, but choosing the right hook for the right job.
 
 ## Learning order & Folder Structure

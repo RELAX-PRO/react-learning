@@ -1,5 +1,8 @@
 # Standard CSS
 
+> **💡 How to Imagine This:**
+> Think of Standard CSS like shouting rules into a crowded room. Everyone (every component) can hear what you're saying. If you shout "Make all buttons red!", every button in the room turns red, whether you meant them to or not.
+
 Standard CSS uses simple .css files imported into React components. It relies on global scope and standard CSS syntax.
 
 ## Pros & Cons

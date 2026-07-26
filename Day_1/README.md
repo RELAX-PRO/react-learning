@@ -1,5 +1,8 @@
 # JavaScript Foundations
 
+> **💡 How to Imagine This:**
+> Think of JavaScript Foundations like learning the grammar and vocabulary of a new language before writing a novel. React is the novel—an expressive, structured story—but if you don't know how to conjugate verbs (functions) or use nouns (variables), your story won't make sense. Mastering these basics ensures you won't get lost when building complex React components later on!
+
 This folder is the base layer of the learning path. Before React makes sense, the student should be comfortable with the language itself.
 
 ## Learning order

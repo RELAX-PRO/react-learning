@@ -1,4 +1,7 @@
-﻿# Link Navigation
+# Link Navigation
+
+> **💡 How to Imagine This:**
+> Think of Link Navigation like moving between rooms in a house. Instead of the browser completely reloading a whole new house from the internet, React quickly and smoothly swaps the content on your screen to show the new room.
 
 This folder explores Link Navigation in React Router.
 

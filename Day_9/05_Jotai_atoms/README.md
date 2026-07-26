@@ -1,5 +1,9 @@
 # Jotai Atoms
 
+> **💡 How to Imagine This:**
+> Imagine a set of LEGO blocks. Each individual block is an "atom" of state. You can build larger structures (derived state) by simply snapping these small, independent pieces together.
+
+
 This folder teaches atomic state in React.
 
 ## What to learn

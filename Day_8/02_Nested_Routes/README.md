@@ -1,4 +1,7 @@
-﻿# Nested Routes
+# Nested Routes
+
+> **💡 How to Imagine This:**
+> Think of Nested Routes like opening folders on your computer. You open the 'Documents' folder (parent route), and inside it, the 'Taxes' folder (child route) appears, while the rest of your screen (the layout) stays exactly the same.
 
 This folder explores Nested Routes in React Router.
 

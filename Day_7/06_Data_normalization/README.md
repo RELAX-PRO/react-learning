@@ -1,5 +1,9 @@
 # 06. Data Normalization
 
+> **💡 How to Imagine This:**
+> Imagine trying to find a specific book in a massive, unorganized pile (an Array). You have to check every single book until you find the right one. Normalizing data is like organizing that pile into a library's card catalog. You assign an ID to the book, and you can instantly walk to the exact shelf (O(1) lookup) without searching through the rest.
+
+
 This section covers data normalization—restructuring API response data (usually arrays) into a dictionary-like object (e.g., `byId`) and an array of identifiers (`allIds`) before storing it in React state.
 
 ## Pros & Cons

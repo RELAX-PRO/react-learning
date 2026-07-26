@@ -1,5 +1,9 @@
 # IndexedDB
 
+> **💡 How to Imagine This:**
+> Imagine a heavy-duty industrial warehouse. It is slightly more complex to navigate, but it allows you to store massive amounts of heavy, structured cargo (data) directly on the client side.
+
+
 This folder introduces browser-side structured storage for larger offline data.
 
 ## What to learn

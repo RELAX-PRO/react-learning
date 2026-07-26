@@ -1,4 +1,7 @@
-﻿# Route Parameters
+# Route Parameters
+
+> **💡 How to Imagine This:**
+> Think of Route Parameters like fill-in-the-blank spaces in a URL. Just like a library book has a unique ID to locate it on a shelf (`/books/123`), the `123` is the parameter that tells the page exactly which specific item to fetch and display.
 
 This folder explores Route Parameters in React Router.
 

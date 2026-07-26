@@ -1,5 +1,8 @@
 # Async / Await
 
+> **💡 How to Imagine This:**
+> If a Promise is like holding a restaurant buzzer and waiting for it to go off, `async/await` is like hiring a personal assistant. You just tell them, "Wait here for the table to be ready, and let me know when it is," while you read a book. The code pauses on that exact line until the task finishes, making it read exactly like a normal, step-by-step to-do list.
+
 `async` and `await` are extensions of Promises that allow you to write asynchronous code that looks and behaves like synchronous code, making it significantly easier to read and maintain.
 
 ## Pros & Cons

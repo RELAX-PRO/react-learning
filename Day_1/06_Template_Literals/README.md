@@ -1,5 +1,8 @@
 # Template Literals
 
+> **💡 How to Imagine This:**
+> Think of Template Literals like a Mad Libs game. Instead of awkwardly gluing words and blank spaces together with tape (like string concatenation with `+`), you write a normal sentence and simply drop your variables directly into designated slots (`${}`). It's cleaner, easier to read, and keeps the sentence intact.
+
 This section demonstrates template literals using backticks, replacing legacy string concatenation.
 
 ## Pros & Cons

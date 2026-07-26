@@ -1,5 +1,9 @@
 # Local Storage
 
+> **💡 How to Imagine This:**
+> Think of LocalStorage like a sticky note you leave on your monitor. Even if you shut down your computer and come back a week later, the note (and the data on it) will still be exactly where you left it.
+
+
 This folder explains browser storage for persistent key-value data.
 
 ## What to learn

@@ -1,5 +1,9 @@
 # Global States
 
+> **💡 How to Imagine This:**
+> Think of global state like a city's public water supply. Instead of every house maintaining its own well or carrying buckets of water back and forth, everyone taps into the same central system whenever they need it.
+
+
 This day explains how to share state across a React app without passing props through every layer.
 
 ## Learning order

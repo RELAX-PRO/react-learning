@@ -1,5 +1,9 @@
 # Zustand Store
 
+> **💡 How to Imagine This:**
+> Think of Zustand like a modern vending machine. No paperwork or bank tellers needed—you just press a button and instantly get exactly the snack (state) you want from the store.
+
+
 This folder shows a lightweight store pattern for shared app state.
 
 ## What to learn

@@ -1,5 +1,8 @@
 # Immutability Patterns
 
+> **💡 How to Imagine This:**
+> Imagine a photographer documenting a building's construction. Instead of painting over the same physical photograph every time a brick is laid (mutation), they take a completely new picture each time. React relies on comparing these distinct "snapshots" to know exactly what changed.
+
 Explanation of avoiding direct mutations to state objects and arrays.
 
 ## Pros & Cons

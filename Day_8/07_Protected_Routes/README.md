@@ -1,4 +1,7 @@
-﻿# Protected Routes
+# Protected Routes
+
+> **💡 How to Imagine This:**
+> Think of Protected Routes like a VIP bouncer at a club. Before letting you enter a specific room (page), the bouncer checks if you have a wristband (are logged in); if not, they immediately redirect you back to the entrance!
 
 This folder explores Protected Routes in React Router.
 

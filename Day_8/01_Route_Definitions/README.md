@@ -1,4 +1,7 @@
-﻿# Route Definitions
+# Route Definitions
+
+> **💡 How to Imagine This:**
+> Think of Route Definitions like a building's directory board in the lobby. It tells you exactly which room (component) you need to go to when you are looking for a specific department (URL path).
 
 This folder explores Route Definitions in React Router.
 
