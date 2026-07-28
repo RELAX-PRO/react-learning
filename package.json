@@ -4,7 +4,7 @@
   "description": "This repository is organized as a learning path, not a random collection of examples. The goal is to move from JavaScript basics to React architecture, then hooks, styling, data fetching, navigation, and global state.",
   "main": "roadmap.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
   }
 }
