@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OptometryReceiptHeader - Snapshot Tests > should match the saved HTML snapshot perfectly 1`] = `
+<div>
+  <div
+    class="p-5 border-2 border-dashed border-slate-700 bg-slate-950 text-white font-mono rounded-lg"
+  >
+    <div
+      class="flex justify-between items-center border-b border-slate-800 pb-3 mb-3"
+    >
+      <div>
+        <h2
+          class="text-lg font-bold text-cyan-400"
+        >
+          👁️ عيادة النور للبصريات الدقيقة
+        </h2>
+        <p
+          class="text-xs text-slate-400"
+        >
+          الموصل، محافظة نينوى - فرع البصريات الحديثة
+        </p>
+      </div>
+      <span
+        class="bg-slate-800 text-amber-400 px-3 py-1 rounded text-xs font-bold"
+      >
+        #REC-
+        9988
+      </span>
+    </div>
+    <div
+      class="grid grid-cols-2 gap-2 text-xs text-slate-300"
+    >
+      <p>
+        <strong
+          class="text-slate-500"
+        >
+          المريض:
+        </strong>
+         
+        أحمد محمود
+      </p>
+      <p>
+        <strong
+          class="text-slate-500"
+        >
+          الطبيب الفاحص:
+        </strong>
+         د. 
+        خالد العبيدي
+      </p>
+      <p
+        class="col-span-2 text-slate-500 text-[10px] mt-2"
+      >
+        تاريخ وتوقيت الكشف: 
+        <time
+          class="text-slate-400"
+        >
+          2026-07-28
+        </time>
+      </p>
+    </div>
+  </div>
+</div>
+`;
