@@ -1,0 +1,25 @@
+{
+  "name": "react-learning",
+  "version": "1.0.0",
+  "description": "This repository is organized as a learning path, not a random collection of examples. The goal is to move from JavaScript basics to React architecture, then hooks, styling, data fetching, navigation, and global state.",
+  "main": "roadmap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RELAX-PRO/react-learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RELAX-PRO/react-learning/issues"
+  },
+  "homepage": "https://github.com/RELAX-PRO/react-learning#readme",
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^7.0.2"
+  }
+}
