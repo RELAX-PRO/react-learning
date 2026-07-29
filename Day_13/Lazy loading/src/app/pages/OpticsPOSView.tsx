@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic';
 // يتم استدعاؤه كحزمة مستقلة فقط عند الحاجة إليه.
 // =========================================================================
 const LazyBarcodeScannerModal = dynamic(
-  () => import('../components/OpticsBarcodeScannerModal'),
+  () => import('../../components/OpticsBarcodeScannerModal'),
   {
     // 1. شاشة التحميل البديلة التي تظهر في الميلي ثوانٍ أثناء جلب ملف الجافاسكريبت
     loading: () => (
