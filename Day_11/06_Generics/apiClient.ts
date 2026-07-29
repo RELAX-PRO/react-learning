@@ -1,8 +1,8 @@
 // =========================================================================
 // File: src/services/apiClient.ts
-// Description: Generic Fetch Engine for Next.js App Router
+// Description: Generic Fetch Engine for React App
 // =========================================================================
-import { ApiResponse, LensStockItem } from '../types/api';
+import { ApiResponse, LensStockItem, Patient } from '../02_Interface_Declaration/api';
 
 // A single generic fetch engine capable of returning any strict type!
 export async function fetchFromClinicApi<T>(endpoint: string): Promise<ApiResponse<T>> {

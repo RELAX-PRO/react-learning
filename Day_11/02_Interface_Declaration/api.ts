@@ -35,7 +35,7 @@ const patientResponse: ApiResponse<Patient> = {
   success: true,
   data: {
     id: "PAT-101",
-    fullName: "سارة محمود",
+    fullName: "Sarah Mahmoud",
     phone: "07901234567"
   }
 };

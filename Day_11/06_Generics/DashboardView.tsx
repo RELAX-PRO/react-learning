@@ -3,14 +3,14 @@
 // Description: Consuming our Generic List with different domain types
 // =========================================================================
 import React from 'react';
-import { GenericDataList } from '../components/GenericDataList';
-import { Patient, LensStockItem } from '../types/api';
+import { GenericDataList } from './GenericDataList';
+import { Patient, LensStockItem } from '../02_Interface_Declaration/api';
 
 export const DashboardView = () => {
   // Simulated data sets
   const patientsList: Patient[] = [
-    { id: "P-1", fullName: "أحمد محمود", phone: "07901112233" },
-    { id: "P-2", fullName: "خالد يوسف", phone: "07804445566" }
+    { id: "P-1", fullName: "Ahmed Mahmoud", phone: "07901112233" },
+    { id: "P-2", fullName: "Khalid Youssef", phone: "07804445566" }
   ];
 
   const lensesList: LensStockItem[] = [
@@ -23,7 +23,7 @@ export const DashboardView = () => {
       
       {/* 1. Using the exact same component for PATIENTS */}
       <GenericDataList<Patient>
-        title="قائمة المرضى المنتظرين"
+        title="Waiting Patients List"
         items={patientsList}
         renderItem={(patient) => (
           <div>
@@ -31,12 +31,12 @@ export const DashboardView = () => {
             <p className="text-[10px] text-slate-500">📞 {patient.phone}</p>
           </div>
         )}
-        onSelectItem={(patient) => alert(`تم اختيار المريض: ${patient.fullName}`)}
+        onSelectItem={(patient) => alert(`Selected Patient: ${patient.fullName}`)}
       />
 
       {/* 2. Using the exact same component for LENSES */}
       <GenericDataList<LensStockItem>
-        title="مخزون النظارات السريع"
+        title="Quick Glasses Inventory"
         items={lensesList}
         renderItem={(lens) => (
           <div className="flex justify-between w-full pr-3">
@@ -44,7 +44,7 @@ export const DashboardView = () => {
             <span className="text-emerald-400 font-extrabold">${lens.priceUSD}</span>
           </div>
         )}
-        onSelectItem={(lens) => alert(`تم اختيار الإطار: ${lens.brand} بسعر $${lens.priceUSD}`)}
+        onSelectItem={(lens) => alert(`Selected Frame: ${lens.brand} for $${lens.priceUSD}`)}
       />
 
     </div>
