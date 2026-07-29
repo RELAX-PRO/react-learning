@@ -92,6 +92,17 @@ module.exports = {
             'Global data persistence',
         ],
     },
+    FormandValidation : {
+        InputManagement : [
+            'Controlled components',
+            'Uncontrolled components',
+            'Form libraries',
+            'Validation schemas',
+            'Error handling',
+            'Form submission',
+            'Input masking'
+        ]
+    },
     TypeIntegration: {
         TypeScriptFeatures: [
             'type annotation',
@@ -114,16 +125,26 @@ module.exports = {
             'user interaction simulation',
         ],
     },
-    FormAndValidation: {
-        InputManagement: [
-            'Controlled components',
-            'Uncontrolled components',
-            'Form validation',
-            'Input masking',
-            'Submission handling',
-            'Select elements',
-            'Checkbox handling',
+    ReactPerformance: {
+        OptimizationTechniques: [
+            'Code splitting',
+            'Lazy loading',
+            'Memoization',
+            'Bundle analysis',
+            'Debouncing inputs',
+            'Throttling events',
+            'Image optimization'
         ],
-        status: 'planned - keep current implementation untouched for now',
+    },
+    MetaFramework: {
+        NextJSFundamentals: [
+            'file system routing',
+            'server component',
+            'client component',
+            'server side rendering',
+            'static site generation',
+            'data fetching patterns',
+            'Deployment workflows'
+        ],
     },
 };
