@@ -92,6 +92,28 @@ module.exports = {
             'Global data persistence',
         ],
     },
+    TypeIntegration: {
+        TypeScriptFeatures: [
+            'type annotation',
+            'interface declaration',
+            'component props typing',
+            'event typing',
+            'hook typing',
+            'generics',
+            'type inference',
+        ],
+    },
+    TestingStrategy: {
+        TestPatterns: [
+            'unit testing',
+            'component testing',
+            'snapshot testing',
+            'mocking modules',
+            'assertions',
+            'test runners "vitest"',
+            'user interaction simulation',
+        ],
+    },
     FormAndValidation: {
         InputManagement: [
             'Controlled components',

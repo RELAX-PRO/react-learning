@@ -4,7 +4,8 @@
   "description": "This repository is organized as a learning path, not a random collection of examples. The goal is to move from JavaScript basics to React architecture, then hooks, styling, data fetching, navigation, and global state.",
   "main": "roadmap.js",
   "scripts": {
-    "test": "vitest run --reporter=verbose"
+    "test": "vitest run --reporter=verbose",
+    "lint": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
