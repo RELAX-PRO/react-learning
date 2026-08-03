@@ -7,13 +7,28 @@ import React, { useState, useEffect } from 'react';
 const LiveExaminationMonitor = ({ patientName, onCloseRoom }) => {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Effect Cleanup Functions
+   * ============================================================================
+   * Effects that create long-running processes (like `setInterval`, WebSocket 
+   * connections, or global `window.addEventListener`) MUST be cleaned up. 
+   * If they aren't, they continue running in the background even after the component
+   * is removed from the screen (unmounted), leading to memory leaks and buggy behavior.
+   * 
+   * The function returned by `useEffect` is the "cleanup function". React calls it:
+   * 1. Right before the component unmounts (is destroyed).
+   * 2. Right before the effect runs again (if dependencies change), to clean up the
+   *    previous render's effect before starting the new one.
+   * ============================================================================
+   */
   useEffect(() => {
     // 1. Setup Phase: Start a background timer
     const timerId = setInterval(() => {
       setSecondsElapsed((prevSeconds) => prevSeconds + 1);
     }, 1000);
 
-    // 2. Setup Phase: Attach an event listener
+    // 2. Setup Phase: Attach an event listener to the global window object
     const handleEmergencyExit = (event) => {
       if (event.key === 'Escape') {
         onCloseRoom();
@@ -21,17 +36,17 @@ const LiveExaminationMonitor = ({ patientName, onCloseRoom }) => {
     };
     window.addEventListener('keydown', handleEmergencyExit);
 
-    // 3. Cleanup Function
+    // 3. Cleanup Function returned from the effect
     // React guarantees this function runs when the component unmounts,
     // or right before the effect re-runs if dependencies change.
     return () => {
-      // Clear the interval to prevent memory leaks and background execution
+      // Clear the interval to prevent memory leaks and background state updates on unmounted components
       clearInterval(timerId);
       
-      // Remove the global event listener to prevent unintended behavior in other components
+      // Remove the global event listener to prevent unintended triggering in other parts of the app
       window.removeEventListener('keydown', handleEmergencyExit);
     };
-  }, [onCloseRoom]);
+  }, [onCloseRoom]); // onCloseRoom is a dependency because we use it inside the effect
 
   return (
     <div className="bg-slate-900 p-6 rounded-2xl border-2 border-emerald-500/50 font-mono text-white max-w-lg mx-auto shadow-2xl animate-fade-in">

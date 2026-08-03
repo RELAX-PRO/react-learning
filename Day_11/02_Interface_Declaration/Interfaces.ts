@@ -4,6 +4,13 @@
 // Interfaces are contracts or blueprints that enforce a specific shape on data (Objects).
 
 // 1. Base Contract:
+/*
+ * MECHANIC: Interface Declarations
+ * Interfaces in TypeScript act as blueprints for object structures. 
+ * They define the shape (properties and their types) an object must have.
+ * By typing an object with an interface, TS ensures that required properties exist
+ * and enforces correct types for each property.
+ */
 interface Patient {
   readonly id: string;           // 👈 Strict readonly lock: Cannot be modified after creation!
   fullName: string;              // 👈 Required
@@ -13,8 +20,8 @@ interface Patient {
 }
 
 // 2. Applying the contract with absolute confidence:
-let firstPatient: Patient = {
-  id: "PAT-8842",
+let firstPatient: Patient = { // Inline: 'firstPatient' explicitly implements the 'Patient' interface
+  id: "PAT-8842", // Inline: this satisfies the 'readonly id' requirement during initialization
   fullName: "Sarah Ali",
   phone: "+201234567890",
   // Note that secondaryPhone or medicalNotes were not provided, and this is acceptable because they are optional

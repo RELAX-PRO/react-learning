@@ -1,6 +1,15 @@
 // =========================================================================
 // File 3: ShopPage.jsx (The Closest Common Ancestor - THE BOSS)
 // =========================================================================
+/**
+ * MECHANICS: Lifting State Up
+ * When multiple sibling components need to read or update the same piece of state,
+ * we "lift" that state up to their closest common parent ancestor. 
+ * The parent becomes the single source of truth, managing the state and distributing it:
+ * - It passes the state value down to children that need to read it.
+ * - It passes updater functions (callbacks) down to children that need to modify it.
+ * This guarantees synchronization across the application.
+ */
 import React, { useState } from 'react';
 import Navbar from './Navbar.jsx';
 import ProductCard from './ProductCard.jsx';
@@ -26,6 +35,7 @@ const ShopPage = () => {
     <div className="shop-container min-h-screen bg-gray-100">
       
       {/* 3. PIPE 1: Pass the READ value down to Sibling 1 (Navbar) */}
+      {/* Inline Comment: `cartCount` is passed as a read-only prop to Navbar */}
       <Navbar cartItemsCount={cartCount} />
 
       {/* 4. PIPE 2: Pass the UPDATE callback down to Sibling 2 (ProductCards) */}

@@ -3,11 +3,20 @@
 // =========================================================================
 import React, { useState } from 'react';
 
+/*
+ * State Management and DOM Manipulation:
+ * React components primarily use state to reflect UI changes without direct DOM manipulation.
+ * However, when interacting with CSS variables applied globally, we might need to access the root element directly.
+ * useState manages the toggle state, while standard JavaScript DOM APIs update the CSS properties.
+ */
 const ThemeController = () => {
+  // Initialize state with 'true' for dark mode
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleClinicTheme = () => {
+    // Calculate the next state based on the current state
     const nextMode = !isDarkMode;
+    // Update the React state which will trigger a re-render
     setIsDarkMode(nextMode);
 
     // Access the root <html> element in the DOM

@@ -1,6 +1,18 @@
 // =========================================================================
 // File: InteractiveEventForm.jsx (Understanding Event Handling & State)
 // =========================================================================
+/**
+ * MECHANICS: State Management & Synthetic Events
+ * 1. State Batching & Immutability: React state should never be mutated directly. We use
+ *    setter functions (e.g., `setFormData`) which queue a state update. By passing a function 
+ *    `prev => ({...prev})` to the setter (functional update), we ensure we always have the 
+ *    latest state before applying our changes, bypassing any stale closures.
+ * 2. Synthetic Events: React wraps native browser events in a cross-browser wrapper called 
+ *    SyntheticEvent. This normalizes event properties (like `event.target.name`) across all browsers.
+ * 3. Controlled Components: Form inputs here are "controlled" by React state. The `value` prop
+ *    is strictly tied to `formData`, and changes are only applied via the `onChange` event, making 
+ *    React the single source of truth for the form data.
+ */
 import React, { useState } from 'react';
 
 const InteractiveEventForm = () => {
@@ -15,7 +27,7 @@ const InteractiveEventForm = () => {
 
   // 2. Universal Change Handler using event target and Computed Property Names:
   const handleInputChange = (event) => {
-    const { name, value } = event.target; // Destructuring synthetic event!
+    const { name, value } = event.target; // Destructuring synthetic event! 'name' matches the input name prop, 'value' is what the user typed.
     
     // Using immutable functional update pattern:
     setFormData(prev => ({

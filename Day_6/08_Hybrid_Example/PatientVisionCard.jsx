@@ -3,6 +3,13 @@
 // =========================================================================
 import React from 'react';
 
+/*
+ * Hybrid Styling Mechanics:
+ * This component showcases a hybrid approach: utilizing Tailwind CSS utilities alongside CSS variables.
+ * By mapping CSS variables (like --clinic-primary) to Tailwind classes in tailwind.config.js, 
+ * the component can seamlessly react to global theme changes without needing explicit prop-based styling.
+ */
+
 const PatientVisionCard = ({ patientName, visionScore }) => {
   return (
     /* 

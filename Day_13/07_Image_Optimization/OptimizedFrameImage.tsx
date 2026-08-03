@@ -9,6 +9,17 @@ interface Props {
   readonly baseImageName: string; // example: "rayban-aviator"
 }
 
+/**
+ * ============================================================================
+ * MECHANICS: Image Optimization & HTML5 <picture>
+ * ----------------------------------------------------------------------------
+ * Optimizing images heavily impacts Core Web Vitals (like LCP and CLS). The 
+ * `<picture>` element allows the browser to choose the most optimal image format 
+ * (like AVIF or WebP) based on its capabilities. Specifying `width` and `height`
+ * prevents Cumulative Layout Shift (CLS), and `loading="lazy"` defers off-screen 
+ * images to save bandwidth.
+ * ============================================================================
+ */
 export const OptimizedFrameImage = ({ altName, baseImageName }: Props) => {
   return (
     <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-lg">

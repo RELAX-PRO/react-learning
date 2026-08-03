@@ -14,6 +14,15 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const OpticsPOSView = lazy(() => import('./pages/OpticsPOSView'));
 const AdminReportsView = lazy(() => import('./pages/AdminReportsView'));
 
+/**
+ * ============================================================================
+ * MECHANICS: React Suspense & Code Splitting
+ * ----------------------------------------------------------------------------
+ * Code splitting breaks our app into smaller chunks to improve load times.
+ * `React.lazy` dynamically imports components. `Suspense` catches the rendering
+ * of these lazy components while they are fetching and provides a fallback UI.
+ * ============================================================================
+ */
 export const App = () => {
   return (
     <BrowserRouter>

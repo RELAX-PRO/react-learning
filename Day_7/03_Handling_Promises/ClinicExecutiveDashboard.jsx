@@ -16,6 +16,21 @@ const ClinicExecutiveDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Concurrent Requests with Promise.all
+   * ============================================================================
+   * When a component needs data from multiple independent endpoints, fetching
+   * them sequentially (one after another) wastes time.
+   * 
+   * `Promise.all` takes an array of Promises and executes them concurrently
+   * (in parallel). It returns a single Promise that resolves to an array of the
+   * results in the exact same order as the input.
+   * 
+   * NOTE: `Promise.all` is "fail-fast". If ANY single promise in the array rejects,
+   * the entire `Promise.all` immediately rejects, and it falls into the catch block.
+   * ============================================================================
+   */
   useEffect(() => {
     const loadAllDashboardMetrics = async () => {
       try {
@@ -23,6 +38,7 @@ const ClinicExecutiveDashboard = () => {
         setErrorMessage(null);
 
         // Promise.all initiates multiple requests concurrently
+        // We use array destructuring to map the ordered results to distinct variables
         const [patientsResponse, framesResponse, appointmentsResponse] = await Promise.all([
           optometryApiClient.get('/patients'),
           optometryApiClient.get('/inventory/frames'),
@@ -30,6 +46,7 @@ const ClinicExecutiveDashboard = () => {
         ]);
 
         // Updates state only after all promises fulfill successfully
+        // This ensures our UI has a consistent state (avoids partial data renders)
         setDashboardData({
           patientsCount: patientsResponse.data.length,
           framesInStock: framesResponse.data.totalStock,
@@ -37,7 +54,8 @@ const ClinicExecutiveDashboard = () => {
         });
 
       } catch (error) {
-        // If any request rejects, the error is caught here
+        // If ANY of the three requests rejects (e.g., 500 error on /patients),
+        // execution immediately jumps here, ignoring successful requests.
         console.error("Failed to load dashboard metrics concurrently:", error);
         setErrorMessage("One or more clinic systems failed to respond. Please try again later.");
       } finally {

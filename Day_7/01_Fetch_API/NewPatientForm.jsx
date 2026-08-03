@@ -25,9 +25,24 @@ const NewPatientForm = ({ onPatientAdded }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Sending Data via POST Request
+   * ============================================================================
+   * When sending data to a server (like creating a new record), we use the POST method.
+   * The `fetch` API accepts a second options object parameter where we specify:
+   * 1. `method: 'POST'` - The HTTP verb to use.
+   * 2. `headers` - Metadata about the request. `Content-Type: application/json` tells
+   *    the server that we are sending JSON data in the body.
+   * 3. `body` - The actual data payload. We must stringify our JavaScript object
+   *    into a JSON string before sending it using `JSON.stringify()`.
+   * ============================================================================
+   */
   // Submit handler triggering the POST Request
   const handleSubmit = async (e) => {
+    // Prevent the default browser form submission (which reloads the page)
     e.preventDefault();
+    
     setIsSubmitting(true);
     setSuccessMessage(null);
     setErrorMessage(null);
@@ -38,13 +53,16 @@ const NewPatientForm = ({ onPatientAdded }) => {
         headers: {
           'Content-Type': 'application/json',
         },
+        // Serialize our form state into a JSON string
         body: JSON.stringify(formData),
       });
 
+      // Manually handle HTTP errors since fetch doesn't reject on them
       if (!response.ok) {
         throw new Error(`Server rejected the record. Status: ${response.status}`);
       }
 
+      // Parse the JSON response returned by the server (often the created object)
       const savedPatient = await response.json();
       
       setSuccessMessage(`Patient "${savedPatient.name}" registered successfully with ID #${savedPatient.id}.`);
@@ -52,6 +70,7 @@ const NewPatientForm = ({ onPatientAdded }) => {
       // Clear form inputs
       setFormData({ name: '', phone: '', sphereRightOD: '', sphereLeftOS: '', diagnosis: 'Myopia' });
       
+      // Notify the parent component if a callback prop was provided
       if (onPatientAdded) onPatientAdded(savedPatient);
     } catch (error) {
       console.error("Submission Error:", error);

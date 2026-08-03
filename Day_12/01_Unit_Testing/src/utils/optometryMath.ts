@@ -3,11 +3,21 @@
 // Description: Pure utility functions for optometry calculations
 // =========================================================================
 
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: TYPESCRIPT UTILITIES
+ * ==========================================
+ * This file contains pure utility functions. Pure functions always 
+ * return the same output for the same input and have no side effects,
+ * making them extremely easy to unit test.
+ * TypeScript interfaces ensure type safety for our data structures.
+ */
 export interface LensOrderInput {
-  readonly basePriceUSD: number;
+  readonly basePriceUSD: number; // 'readonly' ensures properties cannot be mutated after creation
   readonly spherePower: number; // Vision measurement (e.g., -2.50 or +1.00)
   readonly hasBlueLightFilter: boolean;
 }
+
 
 /**
  * Calculates the total cost of a lens order based on medical complexity.

@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: src/router/AppRouter.jsx (The Master Routing Tree)
 // =========================================================================
 import React from 'react';
@@ -10,6 +10,13 @@ import PatientsVault from '../views/PatientsVault';
 import InventoryView from '../views/InventoryView';
 import NotFoundView from '../views/NotFoundView';
 
+/**
+ * AppRouter Component
+ * Demonstrates routing with a persistent MainLayout.
+ * The parent route '/' renders the MainLayout.
+ * Child routes are nested inside the MainLayout, and their components
+ * will be rendered wherever the <Outlet /> is placed within the layout.
+ */
 const AppRouter = () => {
   return (
     <BrowserRouter>

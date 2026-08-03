@@ -1,9 +1,16 @@
-﻿// =========================================================================
+// =========================================================================
 // File: src/layouts/MainLayout.jsx (Persistent Layout with Outlet)
 // =========================================================================
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
+/**
+ * MainLayout Component
+ * A persistent layout component that includes a sidebar navigation
+ * and a main content area where child routes are rendered via <Outlet />.
+ * It demonstrates how to keep certain UI elements (like the sidebar)
+ * persistent across different pages.
+ */
 const MainLayout = () => {
   return (
     <div className="flex min-h-screen bg-slate-900 text-white font-mono">

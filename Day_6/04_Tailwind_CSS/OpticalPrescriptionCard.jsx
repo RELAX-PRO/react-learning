@@ -3,6 +3,14 @@
 // =========================================================================
 import React from 'react';
 
+/*
+ * Tailwind CSS Mechanics in React:
+ * Tailwind uses utility classes to style elements directly within the JSX.
+ * This approach reduces the need for external CSS files and allows for rapid UI development.
+ * It seamlessly supports dynamic styling using JavaScript template literals, combining 
+ * conditional logic with styling classes.
+ */
+
 const OpticalPrescriptionCard = ({ patientName, date, sphereRight, sphereLeft, isUrgent }) => {
   return (
     /* 
@@ -22,6 +30,7 @@ const OpticalPrescriptionCard = ({ patientName, date, sphereRight, sphereLeft, i
         </div>
 
         {/* Dynamic Status Badge via template literals */}
+        {/* String interpolation allows us to inject conditional utility classes based on the 'isUrgent' prop */}
         <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
           isUrgent 
             ? "bg-red-500/10 text-red-400 border border-red-500/20" 

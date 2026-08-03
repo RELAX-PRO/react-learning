@@ -1,16 +1,31 @@
 // =========================================================================
 // File 4: src/views/FramesInventoryView.jsx (UI consuming Redux State)    |
 // =========================================================================
+/*
+  =============================================================================
+  BLOCK COMMENT: Consuming Redux State and Dispatching Actions
+  =============================================================================
+  This file shows how a React component connects to the Redux store.
+  - `useSelector` is used to read data from the store. It subscribes to changes, 
+    so the component re-renders when the selected data changes.
+  - `useDispatch` gives us the `dispatch` function, which is the only way to 
+    trigger state changes in Redux. We pass our imported action creators 
+    (like `sellFrame`) to `dispatch()`.
+  =============================================================================
+*/
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { sellFrame, addFrame } from '../store/inventorySlice';
 
 const FramesInventoryView = () => {
+  // Inline Comment: Access the `frames` and `totalValue` from the `inventory` slice in the Redux store
   const { frames, totalValue } = useSelector((state) => state.inventory);
   
+  // Inline Comment: Get the dispatch function to send actions to the Redux store
   const dispatch = useDispatch();
 
   const handleSell = (id) => {
+    // Inline Comment: Dispatch the sellFrame action with the frame's ID as the payload
     dispatch(sellFrame(id));
   };
 
@@ -21,6 +36,7 @@ const FramesInventoryView = () => {
       price: 200,
       stock: 5
     };
+    // Inline Comment: Dispatch the addFrame action with the new model object as the payload
     dispatch(addFrame(newModel));
   };
 
@@ -64,11 +80,11 @@ const FramesInventoryView = () => {
               disabled={item.stock === 0}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
                 item.stock > 0 
-                   "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20" 
+                   ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20" 
                   : "bg-slate-800 text-slate-500 cursor-not-allowed"
               }`}
             >
-              {item.stock > 0  "🛒 Sell 1 Unit" : "🚫 Out of Stock"}
+              {item.stock > 0 ? "🛒 Sell 1 Unit" : "🚫 Out of Stock"}
             </button>
           </div>
         ))}

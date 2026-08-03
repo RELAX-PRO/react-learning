@@ -1,3 +1,13 @@
+/**
+ * Block Comment: Operators and Type Coercion
+ * JavaScript operators not only perform standard mathematical and logical operations, but 
+ * they often trigger implicit type coercion (converting data from one type to another).
+ * '==' performs loose equality checking and will attempt to coerce types before comparing, 
+ * whereas '===' performs strict equality checking (no coercion) which is generally safer.
+ * Logical operators like '&&' and '||' also evaluate truthiness and can short-circuit, 
+ * returning the first definitive value they encounter.
+ */
+
 // 1. Loose Equality (==)
 console.log(5 == "5");        // Output: true (String "5" converted to Number 5)
 console.log(0 == false);      // Output: true (false converted to 0)
@@ -14,10 +24,10 @@ console.log(null === undefined);// Output: false (Null vs Undefined)
 // !== (Strict inequality - Preferred in React)
 
 // 1. Logical AND (&&)
-let result1 = "Hello" && "World"; 
+let result1 = "Hello" && "World"; // Both strings are truthy. 
 console.log(result1); // Output: "World" (First is truthy, evaluates second)
 
-let result2 = 0 && "Apple";
+let result2 = 0 && "Apple"; // 0 is inherently falsy.
 console.log(result2); // Output: 0 (First is falsy, short-circuits)
 
 // In React, && is used for conditional rendering:

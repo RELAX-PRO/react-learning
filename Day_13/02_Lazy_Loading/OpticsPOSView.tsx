@@ -11,6 +11,15 @@ import React, { useState, lazy, Suspense } from 'react';
 // =========================================================================
 const LazyBarcodeScannerModal = lazy(() => import('./OpticsBarcodeScannerModal'));
 
+/**
+ * ============================================================================
+ * MECHANICS: On-Demand Lazy Loading
+ * ----------------------------------------------------------------------------
+ * Unlike route-based code splitting, this example demonstrates component-level
+ * code splitting. The LazyBarcodeScannerModal is only loaded when `isScannerOpen`
+ * becomes true. Until then, its chunk is never requested over the network.
+ * ============================================================================
+ */
 export const OpticsPOSView = () => {
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [scannedItem, setScannedItem] = useState<string | null>(null);

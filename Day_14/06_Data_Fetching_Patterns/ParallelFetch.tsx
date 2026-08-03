@@ -1,5 +1,18 @@
 import React from 'react';
 
+/**
+ * ==========================================
+ * DATA FETCHING PATTERNS MECHANICS
+ * ==========================================
+ * When building React Server Components, we often need to fetch data from multiple sources.
+ * Fetching sequentially (waiting for one request to finish before starting the next) can create 
+ * "waterfalls" and significantly degrade performance.
+ * 
+ * Using `Promise.all` allows us to initiate multiple asynchronous requests concurrently.
+ * The component will only pause rendering until all promises in the array have resolved,
+ * drastically reducing the total time taken to fetch data.
+ */
+
 // Simulated database queries
 const fetchPatientProfile = async (id: string) => {
   await new Promise(resolve => setTimeout(resolve, 2000)); // Takes 2 seconds

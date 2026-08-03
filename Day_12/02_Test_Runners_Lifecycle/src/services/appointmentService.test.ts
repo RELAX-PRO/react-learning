@@ -2,7 +2,16 @@
 // File: src/services/appointmentService.test.ts
 // Description: Mastering Test Runner Lifecycle Hooks in Vitest
 // =========================================================================
-import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll, vi } from 'vitest';
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: TEST LIFECYCLE HOOKS
+ * ==========================================
+ * Test runners (like Vitest or Jest) provide lifecycle hooks to manage 
+ * setup and teardown of the test environment.
+ * - beforeAll/afterAll: Run once per suite. Good for heavy setups (e.g., DB connections).
+ * - beforeEach/afterEach: Run before/after EVERY test. Ensures test isolation.
+ */
+import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll, vi } from 'vitest'; // 'vi' is the Vitest utility object for mocking
 
 // Simulating an in-memory clinic appointments database
 let clinicAppointmentsDatabase: string[] = [];

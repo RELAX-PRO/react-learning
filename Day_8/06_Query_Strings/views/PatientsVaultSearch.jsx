@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: views/PatientsVaultSearch.jsx (Mastering Query Strings / Search Params)
 // =========================================================================
 import React, { useState, useEffect } from 'react';
@@ -6,6 +6,12 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import optometryApiClient from '../services/optometryApiClient';
 
+/**
+ * PatientsVaultSearch Component
+ * Demonstrates how to use and manipulate URL query strings (search parameters).
+ * The useSearchParams hook allows reading and updating the query string,
+ * acting similarly to useState, but syncing with the browser's URL.
+ */
 const PatientsVaultSearch = () => {
   // 2. INITIALIZE SEARCH PARAMS HOOK (Works just like useState!):
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,5 +1,18 @@
 import React from 'react';
 
+/**
+ * ==========================================
+ * REACT SERVER COMPONENTS (RSC) MECHANICS
+ * ==========================================
+ * Server Components run entirely on the server and are never shipped to the client's browser.
+ * This architecture significantly reduces the JavaScript bundle size.
+ * 
+ * Benefits of Server Components:
+ * 1. Direct Backend Access: Securely connect to databases or APIs without exposing secrets.
+ * 2. Zero Client JS: The component is rendered to static HTML before being sent to the browser.
+ * 3. Simplified Data Fetching: No need for `useEffect`, `useState`, or external libraries for simple data fetching.
+ */
+
 // Notice there is NO "use client" at the top.
 // By default, ALL components in Next.js App Router are Server Components!
 
@@ -12,6 +25,7 @@ export default async function PatientList() {
   console.log("This will print in your terminal, NOT in the browser console!");
 
   // Simulating a fast database query
+  // Since this component is executed on the server, this data could easily come directly from a SQL query or a direct API call.
   const patients = [
     { id: 1, name: "Ahmed", lastVisit: "2023-10-01" },
     { id: 2, name: "Sarah", lastVisit: "2023-11-15" }

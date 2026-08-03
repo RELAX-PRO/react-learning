@@ -2,8 +2,16 @@
 // File: src/components/OptometryReceiptHeader.test.tsx
 // Description: Snapshot Testing using Vitest
 // =========================================================================
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: SNAPSHOT TESTING
+ * ==========================================
+ * Snapshot testing captures the rendered HTML of a component and saves it to a file.
+ * On subsequent runs, it compares the current output against the saved snapshot.
+ * This is incredibly useful for detecting unintended UI regressions in stateless components.
+ */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react'; // Used to render the component for snapshotting
 import { describe, it, expect } from 'vitest';
 import { OptometryReceiptHeader } from './OptometryReceiptHeader';
 

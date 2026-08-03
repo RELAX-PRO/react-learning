@@ -1,11 +1,20 @@
-﻿// =========================================================================
+// =========================================================================
 // File: views/PatientProfileLayout.jsx (The Parent Layout with <Outlet />)
 // =========================================================================
 import React from 'react';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
 
+/**
+ * PatientProfileLayout Component
+ * Serves as the parent layout for patient profile pages.
+ * The <Outlet /> component from 'react-router-dom' acts as a placeholder
+ * where matched child routes will be rendered.
+ * NavLink is used to apply active styles based on the current URL.
+ * useParams extracts the dynamic 'id' parameter from the URL.
+ */
 const PatientProfileLayout = () => {
   // Grab the patient ID from the URL (e.g., '884')
+  // The 'id' parameter matches the ':id' segment defined in the Route path.
   const { id } = useParams();
 
   return (

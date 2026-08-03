@@ -2,9 +2,18 @@
 // File: src/components/OptometryPatientSearch.test.tsx
 // Description: Advanced User Interaction Testing with Vitest & RTL
 // =========================================================================
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: ADVANCED USER SIMULATION
+ * ==========================================
+ * Testing complex user interactions (like typing and pressing specific keys) 
+ * is crucial for form accessibility. We use `userEvent.setup()` to initialize 
+ * the simulation environment. `vi.fn()` is used to create a mock function (spy) 
+ * to verify if our component calls the `onSearch` prop correctly.
+ */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event'; // Provides advanced simulation API
 import { describe, it, expect, vi } from 'vitest';
 import { OptometryPatientSearch } from './OptometryPatientSearch';
 

@@ -1,12 +1,25 @@
+/*
+  =============================================================================
+  BLOCK COMMENT: SessionStorage Persistence
+  =============================================================================
+  `sessionStorage` is similar to `localStorage`, but the data is only stored 
+  for the duration of the page session. It persists over page reloads and 
+  restores, but opening a page in a new tab or window causes a new session 
+  to be initiated. This makes it perfect for temporary draft data that shouldn't 
+  bleed into other tabs.
+  =============================================================================
+*/
 import React, { useState, useEffect } from 'react';
 
 const SessionPatientForm = () => {
   const [patientName, setPatientName] = useState(() => {
+    // Inline Comment: Retrieve draft from sessionStorage for the current tab only
     const savedName = sessionStorage.getItem('temp_session_patient_name');
-    return savedName !== null  JSON.parse(savedName) : "";
+    return savedName !== null ? JSON.parse(savedName) : "";
   });
 
   useEffect(() => {
+    // Inline Comment: Save back to sessionStorage when patientName changes
     sessionStorage.setItem('temp_session_patient_name', JSON.stringify(patientName));
   }, [patientName]);
 

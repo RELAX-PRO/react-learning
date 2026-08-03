@@ -9,6 +9,11 @@ import React, { useState } from 'react';
  */
 export const OptometryValidationForm = () => {
   // 1. State for form inputs
+  /*
+   * The formData state object centrally manages all input values for this form.
+   * By keeping it in one object rather than individual state variables (e.g., setPatientName, setEmail),
+   * we can use a single universal change handler to update any field dynamically.
+   */
   const [formData, setFormData] = useState({
     patientName: "",
     email: "",
@@ -19,8 +24,16 @@ export const OptometryValidationForm = () => {
   const [errors, setErrors] = useState({});
 
   // 3. Universal Change Handler
+  /*
+   * The handleChange function is triggered on every keystroke inside any of our <input> fields.
+   * It extracts the `name` attribute of the input being typed into, and the new `value`.
+   * It then updates the formData state, ensuring the UI always reflects the user's input (Controlled Components).
+   */
   const handleChange = (e) => {
+    // Destructuring 'name' (field identifier) and 'value' (user input) from the event target
     const { name, value } = e.target;
+    // We use the functional form of setFormData to ensure we are working with the most recent state.
+    // The syntax [name]: value uses computed property names to dynamically update the correct field.
     setFormData(prev => ({ ...prev, [name]: value }));
     
     // UX Tip: Clear the specific error message as soon as the user starts typing to fix it!
@@ -31,6 +44,11 @@ export const OptometryValidationForm = () => {
 
   // 4. The Validation Engine
   // Returns true if valid, false if invalid.
+  /*
+   * This validation engine is called upon form submission to verify all constraints.
+   * It builds an error object by evaluating rules against the current `formData` state.
+   * If an input violates a rule, we assign a human-readable string to the corresponding key in `newErrors`.
+   */
   const validateForm = () => {
     const newErrors = {}; // Temporary error object
 
@@ -42,6 +60,8 @@ export const OptometryValidationForm = () => {
     }
 
     // Rule 2: Basic Regex Email Validation
+    // This regular expression ensures the email has characters before and after the '@' symbol,
+    // and characters before and after the '.' symbol, without any spaces.
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email) {
       newErrors.email = "Email is required for billing.";
@@ -61,11 +81,18 @@ export const OptometryValidationForm = () => {
     setErrors(newErrors);
 
     // If the object has no keys, there are no errors!
+    // Object.keys(newErrors) returns an array of the keys (e.g., ["patientName"]). Length 0 means valid.
     return Object.keys(newErrors).length === 0;
   };
 
   // 5. Submit Handler
+  /*
+   * The handleSubmit function intercepts the default browser behavior of an HTML form.
+   * It delegates validation to `validateForm()` and decides whether to proceed with
+   * data submission (e.g., an API call) or to block submission and display errors.
+   */
   const handleSubmit = (e) => {
+    // Prevent the default browser form submission which causes a full page reload
     e.preventDefault();
     
     const isFormValid = validateForm();
@@ -95,6 +122,10 @@ export const OptometryValidationForm = () => {
             onChange={handleChange}
             placeholder="e.g. John Doe"
             // Dynamic styling: Turn the border red if there is an error
+            /* 
+             * This template literal conditionally appends TailwindCSS classes based on the `errors` state.
+             * If an error exists for this field, we apply red borders; otherwise, we use default styling. 
+             */
             className={`w-full p-3 bg-slate-950 border rounded-xl text-sm focus:outline-none transition ${
               errors.patientName ? "border-red-500 focus:border-red-500" : "border-slate-700 focus:border-cyan-500"
             }`}

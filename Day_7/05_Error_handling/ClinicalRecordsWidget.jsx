@@ -16,10 +16,26 @@ const ClinicalRecordsWidget = () => {
     message: ''
   });
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Advanced Error Handling & useCallback
+   * ============================================================================
+   * Robust applications don't just fail; they tell the user WHY they failed.
+   * Here, we inspect `error.response` provided by Axios to categorize the failure:
+   * - No response: The request never reached the server (Network/Offline error).
+   * - 404: The endpoint or resource doesn't exist.
+   * - 500+: The server crashed or had an internal problem.
+   * - 400s: The client sent a bad request.
+   * 
+   * We wrap this logic in `useCallback` to memoize the function. This allows us to
+   * use it inside `useEffect` (as a dependency) AND attach it to a "Retry" button
+   * without triggering unnecessary re-renders or infinite loops.
+   * ============================================================================
+   */
   // Wrap the fetch function in useCallback so it can be re-triggered safely
   const fetchClinicalRecords = useCallback(async () => {
     setIsLoading(true);
-    // Reset any previous errors before initiating a new request
+    // Reset any previous errors before initiating a new request (crucial for Retries)
     setErrorState({ hasError: false, type: null, message: '' });
 
     try {
@@ -28,16 +44,16 @@ const ClinicalRecordsWidget = () => {
     } catch (error) {
       console.error("[Data Fetch Failure]:", error);
 
-      // Distinguish between the different layers of failures
+      // Distinguish between the different layers of failures by checking HTTP status codes
       if (!error.response) {
-        // Network failure (offline, DNS issue, timeout)
+        // Network failure (offline, DNS issue, request timeout)
         setErrorState({
           hasError: true,
           type: 'NETWORK',
           message: 'Network disconnected. Please check your internet connection and try again.'
         });
       } else if (error.response.status === 404) {
-        // Missing resource
+        // Missing resource / Invalid Endpoint
         setErrorState({
           hasError: true,
           type: 'NOT_FOUND',
@@ -51,7 +67,7 @@ const ClinicalRecordsWidget = () => {
           message: 'Server encountered a temporary outage. Our technical team has been notified.'
         });
       } else {
-        // Generic client error (e.g. 400 Bad Request)
+        // Generic client error (e.g. 400 Bad Request, 401 Unauthorized)
         setErrorState({
           hasError: true,
           type: 'GENERIC',
@@ -61,7 +77,7 @@ const ClinicalRecordsWidget = () => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, []); // Empty dependency array means this function reference never changes
 
   useEffect(() => {
     fetchClinicalRecords();

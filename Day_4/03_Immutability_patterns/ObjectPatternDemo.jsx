@@ -1,6 +1,15 @@
 // =========================================================================
 // File: ObjectPatternsDemjsx (Understanding Object Immutability)
 // =========================================================================
+/**
+ * MECHANICS: Object Immutability & Deep Spreading
+ * Similar to arrays, objects must be treated as immutable in React. 
+ * Mutating object properties directly (`obj.prop = 'new'`) doesn't change the object's reference,
+ * so React won't re-render. We use the spread operator (`...`) to create shallow copies.
+ * However, the spread operator only goes one level deep. For nested objects, you must 
+ * explicitly spread every level of nesting that you want to update to ensure a completely 
+ * new reference is created for the nested object as well.
+ */
 import React, { useState } from 'react';
 
 const ObjectPatternsDemo = () => {
@@ -21,7 +30,8 @@ const ObjectPatternsDemo = () => {
   const handleGoOnline = () => {
     setUserProfile(prev => ({
       ...prev,           // Copy id, username, preferences, tempToken as they are
-      status: "Online"   // Overwrite only the status property!
+      status: "Online"   // Inline Comment: This key comes AFTER the spread, so it overwrites the original `status`.
+
     }));
   };
 

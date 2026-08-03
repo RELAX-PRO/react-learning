@@ -11,13 +11,18 @@ interface DailyStats {
   topLensBrand: string;
 }
 
+/*
+ * MECHANIC: useState Type Inference and Explicit Generics
+ * React's `useState` hook can automatically infer types from primitive initial values.
+ * For complex objects or union types (like allowing `null`), explicit generics `<Type>` are required.
+ */
 export const OptometryStatsWidget = () => {
   // 2. SMART INFERENCE: TS infers string and boolean automatically! (No < > needed)
-  const [clinicName, setClinicName] = useState("Al-Yusr Optics Clinic");
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [clinicName, setClinicName] = useState("Al-Yusr Optics Clinic"); // Inline: TS infers 'string'
+  const [isRefreshing, setIsRefreshing] = useState(false); // Inline: TS infers 'boolean'
 
   // 3. EXPLICIT INTERVENTION: We must specify the interface here because initial state is null
-  const [stats, setStats] = useState<DailyStats | null>({
+  const [stats, setStats] = useState<DailyStats | null>({ // Inline: Explicit union type <DailyStats | null>
     totalPatients: 14,
     totalRevenueUSD: 1850,
     topLensBrand: "Crizal Blue"

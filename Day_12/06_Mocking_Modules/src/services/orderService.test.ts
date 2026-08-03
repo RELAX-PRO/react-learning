@@ -2,6 +2,15 @@
 // File: src/services/orderService.test.ts
 // Description: Step-by-Step Manual Mocking in Vitest
 // =========================================================================
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: MODULE MOCKING
+ * ==========================================
+ * Module mocking replaces real module imports with fake versions (spies) for testing.
+ * This is vital when testing functions that rely on external systems (like APIs, DBs).
+ * `vi.mock` intercepts the import and replaces it with mock functions, allowing us 
+ * to control their behavior (`mockResolvedValue`) without real network requests.
+ */
 import { describe, it, expect, vi } from 'vitest';
 import { createPatientOrder } from './orderService';
 import * as supplierApi from './supplierApi'; // 1. We import the external module
@@ -9,6 +18,7 @@ import * as supplierApi from './supplierApi'; // 1. We import the external modul
 // 2. 🚨 The Great Mock Command:
 // This line tells Vitest: "Hijack this entire file in memory,
 // and replace all its functions with fake spy functions entirely offline!"
+
 vi.mock('./supplierApi');
 
 describe('createPatientOrder() - Manual Mocking Deep Dive', () => {

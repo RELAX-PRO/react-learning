@@ -4,13 +4,19 @@
 // =========================================================================
 import React from 'react';
 
+/*
+ * MECHANIC: Generic Component Props
+ * Here, `T` represents the data model (like Patient or Lens) that the list will render.
+ * When the list is instantiated, `T` is specified, meaning `items` will strictly be an array of `T`, 
+ * and `renderItem` will know exactly what properties exist on the `item` parameter.
+ */
 // 1. Defining the Generic Props Contract
 // Notice how T is declared on the interface!
 interface GenericListProps<T> {
   title: string;
-  items: T[]; // An array of whatever type T is passed
-  renderItem: (item: T, index: number) => React.ReactNode; // A function to render each item
-  onSelectItem?: (item: T) => void;
+  items: T[]; // Inline: An array of whatever type T is passed
+  renderItem: (item: T, index: number) => React.ReactNode; // Inline: item is typed as T, guaranteeing properties match
+  onSelectItem?: (item: T) => void; // Inline: callback receives the exact type T
 }
 
 // 2. Defining the Generic Component

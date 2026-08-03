@@ -1,5 +1,14 @@
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: EQUALITY ASSERTIONS
+ * ==========================================
+ * Vitest/Jest provide different ways to check equality:
+ * - `toBe`: Checks for referential identity (using `Object.is`). It works well for primitives but fails for identical objects with different memory addresses.
+ * - `toEqual`: Recursively checks all properties of an object (deep equality). It's the correct way to compare objects and arrays.
+ */
 //@ts-ignore
 expect(20 + 30).toBe(50); // ✅ Passes successfully
+
 //@ts-ignore
 expect("Yusr Clinic").toBe("Yusr Clinic"); // ✅ Passes successfully
 

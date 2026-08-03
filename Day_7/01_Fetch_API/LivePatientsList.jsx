@@ -11,26 +11,49 @@ const LivePatientsList = () => {
   // State for UI feedback (shows a loading state during data fetching)
   const [isLoading, setIsLoading] = useState(true);
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Data Fetching Lifecycle in React
+   * ============================================================================
+   * When fetching data inside a React component, we typically deal with three
+   * core pieces of state: 
+   * 1. The data itself (usually initialized as null or an empty array)
+   * 2. A loading flag (true when the fetch starts, false when it ends)
+   * 3. An error state (to catch and display any failures)
+   * 
+   * We use the `useEffect` hook to trigger the side-effect (fetching) as soon 
+   * as the component mounts. The empty dependency array `[]` ensures the effect
+   * runs only once. If we didn't use `useEffect` and just fetched in the component
+   * body, it would fetch every time the component re-renders, causing an infinite loop.
+   * ============================================================================
+   */
   // useEffect triggers the fetch once when the component mounts.
   // The empty dependency array [] ensures this effect does not re-run.
   useEffect(() => {
+    // Effect callbacks cannot be async, so we define an async function inside
     const getPatientsFromServer = async () => {
       try {
+        // Explicitly set loading state before fetching
         setIsLoading(true); 
         
+        // Await the fetch request
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        // Await the JSON parsing of the response body
         const data = await response.json();
         
+        // Update state with fetched data, triggering a re-render
         setPatients(data);
       } catch (error) {
         console.error("Network Error: Could not reach the server.", error);
       } finally {
+        // finally block runs regardless of success or failure, ensuring we stop loading
         setIsLoading(false); 
       }
     };
 
+    // Invoke the async function immediately
     getPatientsFromServer();
-  }, []); 
+  }, []); // The empty array here is the dependency array
 
   // Conditional Rendering: Displays a loading state while fetching
   if (isLoading) {

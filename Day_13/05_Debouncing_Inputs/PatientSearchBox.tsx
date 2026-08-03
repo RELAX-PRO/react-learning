@@ -5,6 +5,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from './useDebounce';
 
+/**
+ * ============================================================================
+ * MECHANICS: Input Debouncing Implementation
+ * ----------------------------------------------------------------------------
+ * This component demonstrates debouncing in practice. We maintain an instant
+ * search state for immediate UI feedback (like an input field), and a debounced 
+ * state that delays the actual expensive operation (like an API call).
+ * ============================================================================
+ */
 export const PatientSearchBox = () => {
   // 1. Instant value (updates with every keystroke so the user sees what they type immediately)
   const [instantSearch, setInstantSearch] = useState("");

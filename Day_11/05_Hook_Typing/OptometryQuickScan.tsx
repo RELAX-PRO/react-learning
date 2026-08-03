@@ -10,16 +10,22 @@ interface ScannedFrame {
   priceUSD: number;
 }
 
+/*
+ * MECHANIC: Real-World Hook Generics
+ * We often mix inferred types (for primitives like boolean) with explicit generics.
+ * Explicit generics are crucial for arrays (`<ScannedFrame[]>`) to avoid `never[]` and 
+ * for DOM references (`<HTMLInputElement>`) to access element-specific properties safely.
+ */
 export const OptometryQuickScan = () => {
   // 1. Smart Inference (TS infers boolean and string automatically)
-  const [isScanning, setIsScanning] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isScanning, setIsScanning] = useState(false); // Inline: inferred as boolean
+  const [errorMessage, setErrorMessage] = useState(""); // Inline: inferred as string
 
   // 2. Explicit Generic for an Array State (Prevents the never[] trap!)
-  const [scannedList, setScannedList] = useState<ScannedFrame[]>([]);
+  const [scannedList, setScannedList] = useState<ScannedFrame[]>([]); // Inline: explicitly an array of ScannedFrames
 
   // 3. Explicit Generic for DOM Reference (Mandatory null initial value)
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // Inline: typed as an HTML input element
 
   // Focus the input automatically when scanning starts
   useEffect(() => {

@@ -1,3 +1,19 @@
+/**
+ * ============================================================================
+ * BLOCK COMMENT: Mastering useReducer
+ * ============================================================================
+ * `useReducer` is an alternative to `useState` for managing complex state logic
+ * that involves multiple sub-values or when the next state depends on the previous one.
+ * 
+ * It takes a "reducer" function and an initial state.
+ * The reducer function takes the current `state` and an `action` object, and
+ * returns the new state based on the action's type.
+ * 
+ * This pattern centralizes state updates, making the code more predictable
+ * and easier to test, especially for complex state transitions.
+ * ============================================================================
+ */
+
 // =========================================================================
 // File: OpticalExamTerminal.jsx (Mastering useReducer for Complex UI)
 // =========================================================================
@@ -12,10 +28,12 @@ const initialExamState = {
 };
 
 // 2. THE REDUCER: The central brain enforcing all business rules safely:
+// It takes the current state and an action (typically an object with a `type` and optional `payload`)
 const examSessionReducer = (state, action) => {
   switch (action.type) {
     case 'START_SESSION':
       // Enforce Rule: Starting a session MUST wipe old errors and reset duration!
+      // Returns a completely new state object
       return {
         isExamining: true,
         patientId: action.payload,
@@ -26,6 +44,7 @@ const examSessionReducer = (state, action) => {
     case 'TICK_TIMER':
       // Can only increment timer if a session is actively running
       if (!state.isExamining) return state;
+      // Uses the spread operator (...state) to copy existing properties, then overrides `duration`
       return { ...state, duration: state.duration + 1 };
 
     case 'REPORT_ERROR':
@@ -41,12 +60,14 @@ const examSessionReducer = (state, action) => {
       };
 
     default:
+      // Always return the current state if the action type is unknown
       return state;
   }
 };
 
 // 3. THE COMPONENT: Clean, declarative, and zero manual state juggling!
 const OpticalExamTerminal = () => {
+  // `dispatch` is the function we call to send actions to our reducer
   const [examState, dispatch] = useReducer(examSessionReducer, initialExamState);
 
   return (
@@ -71,6 +92,7 @@ const OpticalExamTerminal = () => {
       <div className="flex flex-col gap-2">
         {!examState.isExamining ? (
           <button
+            // Dispatching an action object with type and payload
             onClick={() => dispatch({ type: 'START_SESSION', payload: 'OPT-2026-99' })}
             className="bg-blue-600 hover:bg-blue-500 py-2 rounded font-bold transition"
           >
@@ -79,7 +101,7 @@ const OpticalExamTerminal = () => {
         ) : (
           <>
             <button
-              onClick={() => dispatch({ type: 'TICK_TIMER' })}
+              onClick={() => dispatch({ type: 'TICK_TIMER' })} // Action with no payload
               className="bg-yellow-600 hover:bg-yellow-500 py-2 rounded font-bold transition"
             >
               Simulate +1 Second ⏱

@@ -10,12 +10,26 @@ const ClinicDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Fetching Data with Axios
+   * ============================================================================
+   * Axios simplifies HTTP requests compared to the native `fetch` API:
+   * 1. It automatically transforms JSON data (no need for `await response.json()`).
+   *    The payload is always available under `response.data`.
+   * 2. It automatically rejects the Promise for HTTP error statuses (like 404 or 500).
+   *    This means we don't need to manually check `!response.ok`—it naturally
+   *    flows into our `catch` block.
+   * 3. We can configure base URLs and interceptors centrally (see the API client setup).
+   * ============================================================================
+   */
   useEffect(() => {
     const fetchClinicalRecords = async () => {
       try {
         setIsLoading(true);
         
         // Base URL, timeouts, and headers are managed by the Axios instance
+        // The get() method returns a Promise resolving to an Axios Response object
         const response = await optometryApiClient.get('/patients');
         
         // Axios automatically parses JSON, accessible via response.data
@@ -23,6 +37,7 @@ const ClinicDashboard = () => {
         
       } catch (error) {
         // Axios automatically rejects for non-2xx status codes
+        // Optional chaining (?.) safely accesses nested properties if they exist
         const serverErrorMsg = error.response?.data?.message || "Failed to retrieve records.";
         setErrorMessage(serverErrorMsg);
       } finally {

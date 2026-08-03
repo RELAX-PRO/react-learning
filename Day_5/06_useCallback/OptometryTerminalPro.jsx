@@ -1,3 +1,20 @@
+/**
+ * ============================================================================
+ * BLOCK COMMENT: Using useCallback
+ * ============================================================================
+ * `useCallback` is a React Hook that lets you cache a function definition between renders.
+ * 
+ * Why is this useful?
+ * If you pass a function down to a child component as a prop (like `onDelete`),
+ * a new function is created on every render of the parent. If the child is wrapped
+ * in `React.memo`, it will STILL re-render because it sees a new function prop.
+ * 
+ * By wrapping the function in `useCallback`, React returns the same function
+ * reference on subsequent renders (unless dependencies change). This allows
+ * `React.memo` on the child to work correctly and skip re-renders.
+ * ============================================================================
+ */
+
 // =========================================================================
 // File 2: OptometryTerminalPro.jsx (The Parent Component - Using useCallback)
 // =========================================================================
@@ -20,6 +37,7 @@ const OptometryTerminalPro = () => {
   // Clicking "Toggle Theme" or typing in Search WILL NOT recreate this function!
   const handleArchivePatient = useCallback((patientId) => {
     console.log(` Archiving patient record: ${patientId}`);
+    // Using functional state update (prevList => ...) means we don't need patientsList in the dependency array
     setPatientsList(prevList => prevList.filter(p => p.id !== patientId));
   }, []); // Functional update 'prevList' means we don't even need 'patientsList' in dependencies!
 
@@ -51,7 +69,7 @@ const OptometryTerminalPro = () => {
         <h2 className="text-sm text-slate-400 mb-2">Active Patient Files ({patientsList.length}):</h2>
         {patientsList.map(patient => (
           <PatientRow
-            key={patient.id}
+            key={patient.id} // Important for list rendering
             data={patient}
             onDelete={handleArchivePatient} // <-- Passing the frozen reference!
           />

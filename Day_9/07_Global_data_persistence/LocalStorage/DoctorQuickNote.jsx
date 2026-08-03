@@ -1,15 +1,28 @@
+/*
+  =============================================================================
+  BLOCK COMMENT: LocalStorage Persistence
+  =============================================================================
+  `localStorage` allows you to save string-based key-value pairs in the browser 
+  with no expiration date. The data will remain even after the user closes the 
+  browser or restarts the computer. We combine it with `useState` and `useEffect` 
+  to automatically read the saved note on the initial load and write it back 
+  whenever it changes.
+  =============================================================================
+*/
 import React, { useState, useEffect } from 'react';
 
 const DoctorQuickNote = () => {
   // Lazy initialization reads from localStorage only on the first render.
   const [note, setNote] = useState(() => {
+    // Inline Comment: Fetch existing value synchronously from localStorage
     const savedNote = localStorage.getItem('doctor_quick_note');
     // If a note already exists, restore it; otherwise start empty.
-    return savedNote !== null  JSON.parse(savedNote) : "";
+    return savedNote !== null ? JSON.parse(savedNote) : "";
   });
 
   // Save the note again whenever its value changes.
   useEffect(() => {
+    // Inline Comment: Synchronize React state to LocalStorage (must be a string!)
     localStorage.setItem('doctor_quick_note', JSON.stringify(note));
   }, [note]); // The dependency array keeps this effect tied to note changes only.
 

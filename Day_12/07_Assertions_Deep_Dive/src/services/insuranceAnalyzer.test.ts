@@ -2,10 +2,20 @@
 // File: src/services/insuranceAnalyzer.test.ts
 // Description: Mastering standard TypeScript Assertions in Vitest
 // =========================================================================
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: COMPREHENSIVE ASSERTIONS
+ * ==========================================
+ * A robust test suite uses a variety of assertions to verify different aspects of a return value.
+ * This file demonstrates testing primitive values (`toBe`), objects (`toEqual`), 
+ * arrays (`toContain`, `toHaveLength`), numeric thresholds (`toBeGreaterThan`), 
+ * and error handling (`toThrowError`).
+ */
 import { describe, it, expect } from 'vitest';
 
 // An object representing the insurance analysis result returned by our medical function
 interface InsuranceReport {
+
   readonly patientId: string;
   readonly isEligible: boolean;
   readonly coveragePercentage: number;

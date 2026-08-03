@@ -3,12 +3,21 @@
 // =========================================================================
 import React from 'react';
 
+/*
+ * React Functional Component Mechanics:
+ * This is a standard functional component in React. 
+ * It receives 'props' (properties) as an argument, which allows data to pass from a parent component.
+ * Here, we use object destructuring directly in the function signature to extract the required properties:
+ * name, id, diagnosis, rightEye, and leftEye.
+ */
+
 // Standard CSS is imported globally. Avoid class name collisions in large projects.
 import './OpticalPatientCard.css';
 
+// Component declaration using an arrow function and inline prop destructuring
 const OpticalPatientCard = ({ name, id, diagnosis, rightEye, leftEye }) => {
   return (
-    // React uses 'className' instead of the HTML 'class' attribute.
+    // React uses 'className' instead of the HTML 'class' attribute because 'class' is a reserved keyword in JS.
     <div className="patient-card">
       <div className="patient-header">
         <h3 className="patient-name">{name}</h3>

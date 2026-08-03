@@ -1,10 +1,17 @@
-﻿// =========================================================================
+// =========================================================================
 // File: components/ClinicSidebar.jsx (Mastering NavLink & UI Active States)
 // =========================================================================
 import React from 'react';
 // 1. Import Link and NavLink from the routing library:
 import { Link, NavLink } from 'react-router-dom';
 
+/**
+ * ClinicSidebar Component
+ * Provides navigation links for the application sidebar.
+ * Utilizes <Link> for standard navigation (like a logo) and <NavLink>
+ * for links that require active styling when their corresponding route is active.
+ * The 'isActive' property from NavLink is used for dynamic CSS classes.
+ */
 const ClinicSidebar = () => {
   return (
     <aside className="w-64 bg-slate-950 border-r border-slate-800 p-6 flex flex-col justify-between min-h-screen font-mono text-white">

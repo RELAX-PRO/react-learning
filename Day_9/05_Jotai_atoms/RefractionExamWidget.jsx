@@ -1,6 +1,17 @@
 // =========================================================================
 // File: src/views/RefractionExamWidget.jsx (Consuming Jotai Atoms)
 // =========================================================================
+/*
+  =============================================================================
+  BLOCK COMMENT: Consuming Jotai Atoms
+  =============================================================================
+  This component connects to Jotai's global atomic state. 
+  - `useAtom` acts just like React's `useState`, giving you both the value and a setter, 
+    but it reads/writes to the globally shared atom.
+  - `useAtomValue` is used for derived atoms when we only need to read the value 
+    (since derived atoms typically automatically calculate and don't need manual setters).
+  =============================================================================
+*/
 import React from 'react';
 // 1. Import the Jotai hooks:
 import { useAtom, useAtomValue } from 'jotai';
@@ -13,15 +24,18 @@ import {
 
 const RefractionExamWidget = () => {
   // 2. Read and Write from Primitive Atoms (Just like useState!):
+  // Inline Comment: Connects to the primitive atoms for the right and left eye spheres
   const [rightEye, setRightEye] = useAtom(rightEyeSphereAtom);
   const [leftEye, setLeftEye] = useAtom(leftEyeSphereAtom);
 
   // 3. Read-Only from Derived Atoms (No setter needed! They auto-calculate):
+  // Inline Comment: Reads the derived average which recalculates automatically
   const averagePower = useAtomValue(averageRefractionAtom);
   const severityBadge = useAtomValue(diagnosticSeverityAtom);
 
   const adjustRightEye = (amount) => {
     // Updating the right eye automatically triggers the Derived Atoms to update instantly!
+    // Inline Comment: Updates the right eye primitive atom, causing derived atoms to cascade update
     setRightEye((prev) => Number((prev + amount).toFixed(2)));
   };
 
@@ -37,7 +51,7 @@ const RefractionExamWidget = () => {
         <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
           <div>
             <span className="text-xs text-slate-400 block">Right Eye (OD)</span>
-            <span className="text-lg font-bold text-cyan-400">{rightEye > 0  `+${rightEye}` : rightEye} SPH</span>
+            <span className="text-lg font-bold text-cyan-400">{rightEye > 0 ? `+${rightEye}` : rightEye} SPH</span>
           </div>
           <div className="flex gap-1">
             <button onClick={() => adjustRightEye(-0.25)} className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-bold transition cursor-pointer">-0.25</button>
@@ -48,7 +62,7 @@ const RefractionExamWidget = () => {
         <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
           <div>
             <span className="text-xs text-slate-400 block">Left Eye (OS)</span>
-            <span className="text-lg font-bold text-blue-400">{leftEye > 0  `+${leftEye}` : leftEye} SPH</span>
+            <span className="text-lg font-bold text-blue-400">{leftEye > 0 ? `+${leftEye}` : leftEye} SPH</span>
           </div>
           <div className="flex gap-1">
             <button onClick={() => setLeftEye(prev => Number((prev - 0.25).toFixed(2)))} className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-bold transition cursor-pointer">-0.25</button>

@@ -17,8 +17,18 @@ import React, { useState, useEffect } from 'react';
 // This line tells the engine: "Go into the lodash folder, and grab 
 // ONLY the debounce file!" (Weight: ~2 KB only!)
 // =========================================================================
-import debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce'; // Only imports the debounce function, skipping the rest of lodash
 
+/**
+ * ============================================================================
+ * MECHANICS: Tree Shaking & Bundle Analysis
+ * ----------------------------------------------------------------------------
+ * Tree shaking is a form of dead code elimination used by bundlers (like Vite,
+ * Webpack, or Rollup). If we import a specific function directly from its path, 
+ * the bundler can easily drop the unused parts of the library. This drastically 
+ * reduces the final bundle size sent to the client.
+ * ============================================================================
+ */
 export const PatientSearchDebounce = () => {
   const [query, setQuery] = useState('');
   
@@ -29,8 +39,8 @@ export const PatientSearchDebounce = () => {
 
   // We wrap our fetch function in the surgical debounce function
   const debouncedSearch = React.useMemo(
-    () => debounce(fetchPatient, 500),
-    []
+    () => debounce(fetchPatient, 500), // Delays execution until 500ms have passed since the last call
+    [] // Empty dependency array ensures the debounced function is only created once
   );
 
   useEffect(() => {

@@ -1,9 +1,16 @@
-﻿// =========================================================================
+// =========================================================================
 // File: src/router/ProtectedRoute.jsx (Upgraded with RBAC Superpowers!)
 // =========================================================================
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
+/**
+ * ProtectedRoute Component (RBAC Upgraded)
+ * Not only checks if a user is authenticated (has a token),
+ * but also verifies if they are authorized (has the right role).
+ * If the user lacks the required role (provided via the allowedRoles prop),
+ * they are redirected to a dedicated "Unauthorized" (403) screen instead of login.
+ */
 // Notice we now accept an array of allowedRoles (e.g., ['ADMIN', 'DOCTOR'])
 const ProtectedRoute = ({ allowedRoles = [] }) => {
   const location = useLocation();

@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: src/router/AppRouter.jsx (Implementing Multi-Level RBAC Tree)
 // =========================================================================
 import React from 'react';
@@ -13,6 +13,13 @@ import PatientsVault from '../views/PatientsVault';
 import ClinicSettingsView from '../views/ClinicSettingsView'; // ðŸ‘ˆ Sensitive View
 import FinancialAuditView from '../views/FinancialAuditView'; // ðŸ‘ˆ Sensitive View
 
+/**
+ * AppRouter Component - Tiered Role-Based Access Control (RBAC)
+ * Demonstrates a multi-level protected route architecture.
+ * - Tier 1: General authentication check for all employees.
+ * - Tier 2: A nested ProtectedRoute that further restricts access
+ *   to sensitive areas (like settings and finance) based on user roles.
+ */
 const AppRouter = () => {
   return (
     <BrowserRouter>

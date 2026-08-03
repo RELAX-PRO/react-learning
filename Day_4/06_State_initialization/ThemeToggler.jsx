@@ -1,3 +1,13 @@
+/**
+ * MECHANICS: Lazy State Initialization
+ * When `useState` is called with a direct value (e.g., `useState(localStorage.getItem('theme'))`),
+ * that expression is evaluated on *every single render*, even though React only uses 
+ * the initial value once. For computationally expensive operations (like reading from disk/localStorage),
+ * this causes performance bottlenecks.
+ * By passing an initialization function (e.g., `useState(() => localStorage.getItem('theme'))`),
+ * we enable "lazy initialization". React will only execute this function during the very first
+ * render, skipping the expensive operation on all subsequent re-renders.
+ */
 import React, { useState } from 'react';
 
 const ThemeToggler = () => {
@@ -9,6 +19,7 @@ const ThemeToggler = () => {
     const savedTheme = localStorage.getItem("user_theme");
     
     // Return true if saved theme was 'dark', otherwise false
+    // Inline Comment: This calculation is skipped entirely on re-renders, boosting performance.
     return savedTheme === "dark";
   });
 

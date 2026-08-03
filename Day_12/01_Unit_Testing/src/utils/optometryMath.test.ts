@@ -2,10 +2,20 @@
 // File: src/utils/optometryMath.test.ts
 // Description: Comprehensive Unit Tests using Vitest / Jest syntax
 // =========================================================================
-import { describe, it, expect } from 'vitest';
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: UNIT TESTING
+ * ==========================================
+ * This file uses Vitest, a fast Vite-native testing framework.
+ * Unit testing ensures individual functions work in isolation.
+ * Here, we test the pure function `calculateLensOrderTotal` by giving it 
+ * various inputs (LensOrderInput) and asserting the correct outputs.
+ */
+import { describe, it, expect } from 'vitest'; // Import testing primitives from Vitest
 import { calculateLensOrderTotal, LensOrderInput } from './optometryMath';
 
 // describe: A container that groups all tests related to this function into one block
+// 'describe' creates a test suite block to group related test cases ('it' blocks).
 describe('calculateLensOrderTotal() - Optometry Billing Unit Tests', () => {
 
   // 🟢 Test 1: The Happy Path scenario

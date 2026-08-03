@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: src/router/AppRouter.jsx (Securing the Route Tree)
 // =========================================================================
 import React from 'react';
@@ -11,6 +11,13 @@ import DashboardView from '../views/DashboardView';
 import PatientsVault from '../views/PatientsVault';
 import InventoryView from '../views/InventoryView';
 
+/**
+ * AppRouter Component
+ * Demonstrates a secured routing architecture.
+ * Public routes (like login) are openly accessible.
+ * Protected routes are wrapped by the <ProtectedRoute /> component,
+ * which enforces authentication checks before rendering its children.
+ */
 const AppRouter = () => {
   return (
     <BrowserRouter>

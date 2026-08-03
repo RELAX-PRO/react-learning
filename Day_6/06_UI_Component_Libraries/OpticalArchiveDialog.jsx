@@ -14,11 +14,20 @@ import {
   DialogFooter 
 } from './components/ui/dialog';
 
+/*
+ * React State and UI Libraries:
+ * The useState hook is a fundamental React hook that allows functional components to manage local state.
+ * Here it manages the open/closed state of a modal dialog.
+ * UI Libraries (like shadcn/ui or Radix) provide accessible component primitives that integrate seamlessly with React state.
+ */
 const OpticalArchiveDialog = ({ patientName, patientId, onConfirmArchive }) => {
+  // useState returns an array with exactly two items: the current state value, and a function to update it.
   const [isOpen, setIsOpen] = useState(false);
 
   const handleAction = () => {
+    // Calling the function passed via props to lift state up or trigger a parent action
     onConfirmArchive(patientId);
+    // Updating the state triggers a re-render to hide the dialog
     setIsOpen(false);
   };
 

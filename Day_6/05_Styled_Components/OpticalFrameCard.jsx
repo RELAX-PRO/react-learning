@@ -4,6 +4,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/*
+ * Styled Components Mechanics:
+ * Styled Components uses tagged template literals to style components. 
+ * It generates unique class names and injects the styles into the DOM.
+ * This pattern allows CSS to be scoped to the component and dynamically react to props.
+ */
+
 // Creating a styled container component with standard CSS syntax inside backticks.
 const CardContainer = styled.div`
   background-color: #0f172a;
@@ -64,7 +71,8 @@ const PriceTag = styled.div`
 // The React Component using semantic custom tags rather than utility classes.
 const OpticalFrameCard = ({ modelName, material, price, inStock, isPremium }) => {
   return (
-    // Passing JS props directly into the styled components.
+    // Passing JS props directly into the styled components to dictate CSS behavior dynamically
+
     <CardContainer isPremium={isPremium}>
       
       <FrameTitle>

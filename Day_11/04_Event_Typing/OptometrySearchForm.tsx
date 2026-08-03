@@ -7,21 +7,27 @@ import React, { useState } from 'react';
 export const OptometrySearchForm = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
+  /*
+   * MECHANIC: React Event Typing
+   * React provides specific synthetic event types (e.g., ChangeEvent, FormEvent, MouseEvent).
+   * Generics (like <HTMLInputElement>) bind the event to a specific DOM element, giving you 
+   * strong typing for properties like `e.target.value` or enforcing correct handlers.
+   */
   // 1. Typing an Input Change Event
   // We specify that 'e' is a ChangeEvent triggered by an HTMLInputElement
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Inline: Event is typed to HTML input
     setSearchQuery(e.target.value); // TS knows exactly that target has a .value!
   };
 
   // 2. Typing a Form Submit Event
   // We specify that 'e' is a FormEvent triggered by an HTMLFormElement
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => { // Inline: Event is typed to HTML form
     e.preventDefault(); // TS allows preventDefault() because it exists on FormEvent
     console.log("Searching for patient:", searchQuery);
   };
 
   // 3. Typing a Button Click Event
-  const handleClearClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClearClick = (e: React.MouseEvent<HTMLButtonElement>) => { // Inline: Event is typed to HTML button
     setSearchQuery("");
   };
 

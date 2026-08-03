@@ -2,7 +2,15 @@
 // File: src/components/OptometryPatientSearch.tsx
 // Description: Keyboard-accessible search form for optical clinics
 // =========================================================================
-import React, { useState } from 'react';
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: FORM HANDLING & EVENTS
+ * ==========================================
+ * React uses synthetic events to wrap native browser events, ensuring cross-browser consistency.
+ * Form submission is handled by intercepting the `onSubmit` event and calling `e.preventDefault()`.
+ * Controlled inputs are bound to state (`value={query}`) and updated via `onChange`.
+ */
+import React, { useState } from 'react'; // React hooks for local state
 
 interface Props {
   readonly onSearch: (patientName: string) => void;

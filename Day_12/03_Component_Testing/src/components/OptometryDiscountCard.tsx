@@ -2,7 +2,15 @@
 // File: src/components/OptometryDiscountCard.tsx
 // Description: A React Component for applying immediate clinic discounts
 // =========================================================================
-import React, { useState } from 'react';
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: REACT STATE & COMPONENT
+ * ==========================================
+ * This functional component uses the `useState` hook to manage local state.
+ * React components re-render whenever their state or props change.
+ * The UI is a direct reflection of this internal state.
+ */
+import React, { useState } from 'react'; // Import the useState hook to add state to the component
 
 interface Props {
   readonly frameModel: string;
@@ -10,8 +18,10 @@ interface Props {
 }
 
 export const OptometryDiscountCard = ({ frameModel, initialPriceUSD }: Props) => {
+  // `useState` returns an array: [currentValue, setterFunction]
   const [price, setPrice] = useState(initialPriceUSD);
   const [isDiscountApplied, setIsDiscountApplied] = useState(false);
+
 
   const handleApplyDiscount = () => {
     // Apply 20% discount

@@ -4,10 +4,16 @@
 // =========================================================================
 
 // 1. Defining the Master Generic Contract
-export interface ApiResponse<T> {
-  readonly status: number;
+/*
+ * MECHANIC: Generic Interfaces
+ * `<T>` is a generic type parameter. It allows the `ApiResponse` interface to be reusable 
+ * for any data payload. When utilizing this interface, `T` will be replaced by a concrete type.
+ * This ensures strong typing for the `data` property, regardless of what the API returns.
+ */
+export interface ApiResponse<T> { // Inline: <T> represents a dynamic type variable
+  readonly status: number; // Inline: Cannot be modified after instantiation
   readonly success: boolean;
-  message?: string;
+  message?: string; // Inline: Optional property
   data: T; // 👈 The magic payload spot! Adapts dynamically to T
 }
 

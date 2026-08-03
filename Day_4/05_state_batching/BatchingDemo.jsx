@@ -1,6 +1,14 @@
 // =========================================================================
 // File: BatchingDemjsx (Demonstrating how React groups updates)
 // =========================================================================
+/**
+ * MECHANICS: State Batching
+ * To optimize performance, React 18+ automatically "batches" multiple state updates 
+ * that occur within the same event handler or lifecycle lifecycle. Instead of re-rendering 
+ * the component for every single `setState` call, React waits until all code in the event 
+ * handler finishes executing, combines the state updates, and performs a single, unified re-render.
+ * This prevents unnecessary intermediate renders and improves application speed.
+ */
 import React, { useState } from 'react';
 
 const BatchingDemo = () => {
@@ -24,6 +32,7 @@ const BatchingDemo = () => {
     setStatusText("Processing Data");
 
     // React batches these updates into a single render.
+    // Inline Comment: Only ONE re-render happens after this function completes, NOT three.
   };
 
   return (

@@ -13,9 +13,15 @@ interface LensItem {
   price: number;
 }
 
+/*
+ * MECHANIC: useState Array and Nullable Typings
+ * By default, `useState([])` infers `never[]`, making the array unusable.
+ * By supplying `<LensItem[]>`, we explicitly tell TS the array will contain `LensItem` objects.
+ * Similarly, `<PatientProfile | null>` lets state start as null before the data loads.
+ */
 export function StateExample() {
   // ✅ By using <LensItem[]> we tell React this empty array will only accept LensItem elements in the future!
-  const [lenses, setLenses] = useState<LensItem[]>([]);
+  const [lenses, setLenses] = useState<LensItem[]>([]); // Inline: Types the empty array to strictly hold LensItems
 
   interface PatientProfile {
     name: string;
@@ -23,7 +29,7 @@ export function StateExample() {
   }
 
   // 🪄 Magic: The variable might contain the patient object, or it might be null (empty) before data loads.
-  const [activePatient, setActivePatient] = useState<PatientProfile | null>(null);
+  const [activePatient, setActivePatient] = useState<PatientProfile | null>(null); // Inline: Allows the state to safely be null initially
 
   return (
     <div>

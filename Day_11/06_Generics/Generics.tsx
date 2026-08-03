@@ -16,8 +16,14 @@ const badResult = getFirstElementBad(["Ahmed", "Sarah"]);
 
 // =========================================================================
 
+/*
+ * MECHANIC: Function Generics
+ * The `<T>` parameter captures the type of the elements in the array provided.
+ * If you pass `number[]`, TS replaces `T` with `number`, ensuring the function returns a `number`.
+ * This provides "any-like" flexibility with 100% type safety.
+ */
 // ✅ The excellent second way: Using Generics <T> (Super Intelligence!)
-function getFirstElement<T>(array: T[]): T {
+function getFirstElement<T>(array: T[]): T { // Inline: <T> defines a dynamic type based on the argument
   return array[0];
 }
 

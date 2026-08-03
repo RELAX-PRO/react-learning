@@ -1,10 +1,17 @@
-﻿// =========================================================================
+// =========================================================================
 // File: src/router/ProtectedRoute.jsx (The Security Checkpoint)
 // =========================================================================
 import React from 'react';
 // 1. Import Navigate (declarative redirect) and Outlet (to render child screens):
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
+/**
+ * ProtectedRoute Component
+ * Acts as a security checkpoint for authenticated routes.
+ * It verifies the user's authentication status (e.g., via a token).
+ * If authenticated, it renders the child routes via <Outlet />.
+ * If not, it redirects the user to a public route (e.g., login) using <Navigate />.
+ */
 const ProtectedRoute = () => {
   // 2. CHECK SECURITY CREDENTIALS:
   // In a production app, you might check AuthContext or Redux state.

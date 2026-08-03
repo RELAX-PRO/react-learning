@@ -1,3 +1,17 @@
+/**
+ * ============================================================================
+ * BLOCK COMMENT: Consuming Context
+ * ============================================================================
+ * The `useContext` hook allows a component to consume a context's value without
+ * needing to receive props from its parent.
+ * This is incredibly useful for deep component trees where passing props through
+ * every intermediate component (prop drilling) becomes tedious and messy.
+ * 
+ * Notice how `DeepDashboard` does not receive any props, nor does it pass any
+ * props to `UserCard`. `UserCard` grabs what it needs directly from the context.
+ * ============================================================================
+ */
+
 // =========================================================================
 // File 3: DeepDashboard.jsx & UserCard (Step 3: The Consumer Hook)
 // =========================================================================
@@ -17,6 +31,7 @@ const DeepDashboard = () => {
 // The deepest component that actually needs the data:
 const UserCard = () => {
   //  Context consumer: We tune into the AppContext instantly!
+  // useContext returns the value passed to the closest <AppContext.Provider>
   const { userProfile, toggleTheme } = useContext(AppContext);
 
   return (

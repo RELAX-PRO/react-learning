@@ -14,6 +14,21 @@ const NormalizedPatientsVault = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  /**
+   * ============================================================================
+   * EXPLANATION: Data Normalization
+   * ============================================================================
+   * APIs usually return arrays of objects. In React, updating a deeply nested object
+   * inside an array requires mapping over the entire array, which is inefficient (O(n)).
+   * 
+   * Data Normalization converts this array into a "dictionary" or "hash map" structure,
+   * typically separating the data into `byId` (an object mapping IDs to item data)
+   * and `allIds` (an array of just the IDs to maintain sorting/ordering).
+   * 
+   * This enables instant O(1) lookups and incredibly fast, targeted state updates
+   * for specific items without scanning the array.
+   * ============================================================================
+   */
   useEffect(() => {
     const fetchAndNormalizeData = async () => {
       try {
@@ -21,14 +36,16 @@ const NormalizedPatientsVault = () => {
         const response = await optometryApiClient.get('/patients');
         const rawPatientsArray = response.data;
 
-        // Normalize the array response into a dictionary-based structure
+        // Normalize the array response into a dictionary-based structure using reduce
         const normalizedData = rawPatientsArray.reduce(
           (acc, currentPatient) => {
+            // Map the entity's ID to its data object
             acc.byId[currentPatient.id] = currentPatient;
+            // Maintain an array of just the IDs for rendering lists
             acc.allIds.push(currentPatient.id);
             return acc;
           },
-          { byId: {}, allIds: [] }
+          { byId: {}, allIds: [] } // Initial accumulator state
         );
 
         setPatientsState(normalizedData);
@@ -42,15 +59,16 @@ const NormalizedPatientsVault = () => {
     fetchAndNormalizeData();
   }, []);
 
-  // Update a single patient by ID efficiently without iterating through arrays
+  // Update a single patient by ID efficiently without iterating through arrays (No .map() needed!)
   const handleUpdateDiagnosis = (patientId, newDiagnosis) => {
     setPatientsState((prevState) => ({
       ...prevState,
       byId: {
         ...prevState.byId,
+        // Direct lookup of the specific patient using computed property syntax [patientId]
         [patientId]: {
-          ...prevState.byId[patientId],
-          diagnosis: newDiagnosis,
+          ...prevState.byId[patientId], // Spread existing patient properties
+          diagnosis: newDiagnosis,      // Override the diagnosis
         },
       },
     }));

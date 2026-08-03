@@ -1,5 +1,13 @@
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: USER-EVENT SIMULATION
+ * ==========================================
+ * The `@testing-library/user-event` library simulates full browser interactions.
+ * Unlike `fireEvent`, it fires multiple events mimicking a real user (e.g. keydown, keypress, keyup).
+ */
 //@ts-ignore
 // كتابة اسم المريض حرفاً حرفاً في الحقل:
+
 await user.type(nameInput, "أحمد محمود");
 
 //@ts-ignore

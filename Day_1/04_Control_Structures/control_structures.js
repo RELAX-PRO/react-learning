@@ -1,7 +1,17 @@
+/**
+ * Block Comment: Control Structures and Declarative Mapping
+ * Control structures direct the flow of execution in a program.
+ * While traditional 'if/else' statements evaluate block logic (imperative), React heavily favors
+ * expression-based structures like the Ternary operator (condition ? true : false) because 
+ * JSX requires expressions inside its braces, not statements.
+ * Similarly, mapping over arrays dynamically produces UI elements natively in React,
+ * replacing the imperative 'for' loop.
+ */
+
 // 1. Traditional if/else (Cannot be used directly inside JSX return statements)
 let userBadge;
 let userScore = 100;
-if (userScore >= 100) {
+if (userScore >= 100) { // Evaluates boolean condition
   userBadge = "Gold VIP";
 } else {
   userBadge = "Standard Member";
@@ -9,7 +19,7 @@ if (userScore >= 100) {
 console.log(userBadge);
 
 // 2. Ternary Operator (Commonly used in React JSX)
-const modernBadge = userScore >= 100 ? "Gold VIP" : "Standard Member";
+const modernBadge = userScore >= 100 ? "Gold VIP" : "Standard Member"; // Syntax: condition ? expressionIfTrue : expressionIfFalse
 console.log(modernBadge);
 
 // Example of ternary operator in React JSX:
@@ -53,7 +63,7 @@ for (let i = 0; i < developerSkills.length; i++) {
 }
 
 // 2. Declarative approach (Array.prototype.map)
-const modernList = developerSkills.map((skill) => "Skill: " + skill);
+const modernList = developerSkills.map((skill) => "Skill: " + skill); // .map() creates a brand new array
 
 console.log(modernList); 
 // Output: ["Skill: JavaScript", "Skill: React", "Skill: Node.js"]

@@ -2,10 +2,18 @@
 // File: src/components/OptometryReceiptHeader.tsx
 // Description: A stateless component representing an official optical receipt
 // =========================================================================
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: STATELESS COMPONENTS
+ * ==========================================
+ * This is a 'stateless' or 'dumb' component. It relies entirely on props for its data
+ * and does not manage any internal state. These components are highly predictable,
+ * reusable, and exceptionally easy to test via snapshot testing.
+ */
 import React from 'react';
 
 interface Props {
-  readonly receiptId: string;
+  readonly receiptId: string; // Identifier for the receipt
   readonly patientName: string;
   readonly doctorName: string;
   readonly examDate: string;

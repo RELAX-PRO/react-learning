@@ -1,3 +1,20 @@
+/**
+ * ============================================================================
+ * BLOCK COMMENT: High Performance with useMemo
+ * ============================================================================
+ * `useMemo` is a React Hook that lets you cache the result of a calculation
+ * between renders. This is known as "memoization".
+ * 
+ * It takes two arguments:
+ * 1. A function that calculates and returns the value you want to cache.
+ * 2. A dependency array.
+ * 
+ * React will only recalculate the value when one of the dependencies has changed.
+ * This prevents expensive calculations from running on every single render,
+ * improving performance.
+ * ============================================================================
+ */
+
 // =========================================================================
 // File: OpticalAnalyticsPro.jsx (High Performance with useMemo)
 // =========================================================================
@@ -10,6 +27,7 @@ const OpticalAnalyticsPro = ({ patientsList }) => {
   //  Memoized computation:
   // React will run this expensive computation ONLY if 'patientsList' or 'filterQuery' changes!
   // If the user just clicks 'Toggle Theme', React SKIPS this block instantly! 
+  // It simply returns the already cached `processedOpticalStats` object.
   const processedOpticalStats = useMemo(() => {
     console.log(" CPU Intensive Task: Processing 10,000 optical records...");
     
@@ -49,6 +67,7 @@ const OpticalAnalyticsPro = ({ patientsList }) => {
       </div>
 
       {/* Rendering the cached results instantly: */}
+      {/* We access properties on the cached object returned by useMemo */}
       <div className="grid grid-cols-3 gap-4 text-center mt-6">
         <div className="p-4 bg-slate-800 rounded">
           <p className="text-xs text-slate-400">Total Filtered</p>

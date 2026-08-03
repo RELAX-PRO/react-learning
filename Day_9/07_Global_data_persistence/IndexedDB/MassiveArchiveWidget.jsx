@@ -1,3 +1,14 @@
+/*
+  =============================================================================
+  BLOCK COMMENT: IndexedDB Persistence
+  =============================================================================
+  IndexedDB is a low-level API for client-side storage of significant amounts 
+  of structured data. It's asynchronous and much more powerful than LocalStorage.
+  Here we use the `idb-keyval` library which provides a simpler Promise-based 
+  key-value store wrapping IndexedDB. The data persists even after closing the 
+  browser, making it ideal for large archives or offline capabilities.
+  =============================================================================
+*/
 import React, { useState, useEffect } from 'react';
 import { get, set } from 'idb-keyval';
 
@@ -6,6 +17,7 @@ const MassiveArchiveWidget = () => {
   const [status, setStatus] = useState("جاري تحميل الأرشيف من الخزنة العملاقة...");
 
   useEffect(() => {
+    // Inline Comment: Async function to fetch stored records from IndexedDB on component mount
     const loadArchive = async () => {
       const savedRecords = await get('clinic_massive_archive');
       if (savedRecords) {
@@ -23,9 +35,11 @@ const MassiveArchiveWidget = () => {
     const newRecord = { id: Date.now(), patient: "مريض جديد", diagnosis: "فحص نظر دوري" };
     const updatedList = [newRecord, ...records];
     
+    // Inline Comment: Update local React state immediately for snappy UI
     setRecords(updatedList);
     setStatus("💾 جاري الحفظ في الخلفية...");
 
+    // Inline Comment: Save the new list to IndexedDB asynchronously
     await set('clinic_massive_archive', updatedList);
     setStatus("✅ تم حفظ السجل في الخزنة العملاقة IndexedDB!");
   };

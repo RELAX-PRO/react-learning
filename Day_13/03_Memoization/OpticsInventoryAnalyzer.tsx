@@ -45,6 +45,17 @@ interface Props {
   readonly initialInventory: OpticsItem[];
 }
 
+/**
+ * ============================================================================
+ * MECHANICS: React Performance Memoization
+ * ----------------------------------------------------------------------------
+ * React re-renders components when their state or props change. When a parent 
+ * re-renders, all children re-render by default. `useMemo` caches the result 
+ * of expensive calculations between renders, while `useCallback` caches function 
+ * definitions. `React.memo` is a Higher Order Component that caches the 
+ * rendering of a child component based on its props.
+ * ============================================================================
+ */
 export const OpticsInventoryAnalyzer = ({ initialInventory }: Props) => {
   // Fast search state (changes with every keystroke)
   const [searchTerm, setSearchTerm] = useState("");
@@ -56,7 +67,7 @@ export const OpticsInventoryAnalyzer = ({ initialInventory }: Props) => {
   // Filtering thousands of items is heavy; we don't want to re-run it when the user
   // clicks the currency toggle (isEuro), but ONLY when searchTerm or inventory changes!
   // =========================================================================
-  const filteredInventory = useMemo(() => {
+  const filteredInventory = useMemo(() => { // useMemo caches the array result so it's not re-calculated unless initialInventory or searchTerm change
     console.log("🧮 [Heavy Computation]: Filtering massive inventory list...");
     return initialInventory.filter((item) =>
       item.brand.toLowerCase().includes(searchTerm.toLowerCase())

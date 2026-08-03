@@ -1,4 +1,12 @@
-﻿// Ø¯Ø§Ø®Ù„ Ø´Ø±ÙŠØ· Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø¬Ø§Ù†Ø¨ÙŠØ© (Sidebar):
+/**
+ * Sidebar Snippet
+ * Demonstrates UI-level authorization.
+ * We parse the user's information from localStorage to determine their role.
+ * Sensitive links (like settings) are conditionally rendered only if the user
+ * has the required role (ADMIN or DOCTOR), providing a cleaner UX and hiding
+ * unauthorized features from lower-tier users.
+ */
+// Ø¯Ø§Ø®Ù„ Ø´Ø±ÙŠØ· Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø¬Ø§Ù†Ø¨ÙŠØ© (Sidebar):
 const user = JSON.parse(localStorage.getItem('optical_vault_user') || '{}');
 
 return (

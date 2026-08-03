@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: views/NewPatientForm.jsx (Mastering programmatic useNavigate)
 // =========================================================================
 import React, { useState } from 'react';
@@ -6,6 +6,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import optometryApiClient from '../services/optometryApiClient';
 
+/**
+ * NewPatientForm Component
+ * Demonstrates programmatic navigation using the useNavigate hook.
+ * Once a new patient record is created via an API call, we can
+ * automatically transport the user to the new profile page
+ * without requiring them to click a Link.
+ */
 const NewPatientForm = () => {
   const [name, setName] = useState('');
   

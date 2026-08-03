@@ -1,3 +1,12 @@
+/**
+ * Block Comment: Template Literals
+ * Template literals represent strings allowing embedded expressions (using `${expression}`). 
+ * In memory, traditional string concatenation builds multiple interim strings, whereas 
+ * template literals compile into a single resulting string format more cleanly. 
+ * They also preserve whitespace natively, making multi-line strings much simpler without 
+ * relying on explicit newline characters ('\n').
+ */
+
 const userName = "Majed";
 const unreadMessages = 5;
 
@@ -5,12 +14,12 @@ const unreadMessages = 5;
 const oldMessage = "Hello " + userName + ", you have " + unreadMessages + " unread messages.";
 
 // 2. Template Literals (Backticks ``)
-const modernMessage = `Hello ${userName}, you have ${unreadMessages} unread messages.`;
+const modernMessage = `Hello ${userName}, you have ${unreadMessages} unread messages.`; // Clean string interpolation
 
 console.log(modernMessage); // Output: "Hello Majed, you have 5 unread messages."
 
 // Embedded expressions
-const mathExample = `The total of 10 + 20 is ${10 + 20}.`;
+const mathExample = `The total of 10 + 20 is ${10 + 20}.`; // Code inside ${} is evaluated
 console.log(mathExample); // Output: "The total of 10 + 20 is 30."
 
 // Multi-line strings using concatenation

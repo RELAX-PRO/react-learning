@@ -24,6 +24,19 @@ const PatientCardSkeleton = () => {
   );
 };
 
+/**
+ * ============================================================================
+ * EXPLANATION: Skeleton Loaders & Independent Loading States
+ * ============================================================================
+ * Instead of a generic "Loading..." spinner or blank screen, Skeleton Loaders
+ * provide a placeholder UI that mimics the structure of the incoming data.
+ * This reduces perceived wait times and prevents abrupt layout shifts when
+ * the data finally renders.
+ * 
+ * By encapsulating its own `isLoading` state, this component fetches its own data
+ * and manages its own Skeleton independently, rather than relying on a global loading state.
+ * ============================================================================
+ */
 // Component that displays data with independent loading state
 const PatientCardWithSkeleton = ({ patientId }) => {
   const [patient, setPatient] = useState(null);
@@ -34,6 +47,7 @@ const PatientCardWithSkeleton = ({ patientId }) => {
     const fetchSinglePatient = async () => {
       try {
         setIsLoading(true);
+        // The parameter patientId is used to fetch a specific record dynamically
         const response = await optometryApiClient.get(`/patients/${patientId}`);
         setPatient(response.data);
       } catch (err) {
@@ -44,7 +58,7 @@ const PatientCardWithSkeleton = ({ patientId }) => {
     };
 
     fetchSinglePatient();
-  }, [patientId]);
+  }, [patientId]); // patientId is a dependency, so if it changes, we re-fetch!
 
   if (isLoading) {
     return <PatientCardSkeleton />;

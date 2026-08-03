@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: views/PatientCheckoutWizard.jsx (Mastering Programmatic Navigation)
 // =========================================================================
 import React, { useState } from 'react';
@@ -6,6 +6,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import optometryApiClient from '../services/optometryApiClient';
 
+/**
+ * PatientCheckoutWizard Component
+ * Showcases advanced programmatic navigation capabilities.
+ * It demonstrates how to navigate to a new route while replacing the current
+ * history stack entry (preventing double charging if the user hits the back button).
+ * It also demonstrates passing hidden state (like a success message) to the target route.
+ */
 const PatientCheckoutWizard = ({ patientId = "884", amount = "150.00" }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   

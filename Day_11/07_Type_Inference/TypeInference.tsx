@@ -1,13 +1,19 @@
 // =========================================================================
 // Lesson 7: Automatic Type Inference
 // =========================================================================
+/*
+ * MECHANIC: Type Inference
+ * When a variable is initialized at the same time it is declared, TypeScript uses the
+ * assigned value's type as the variable's type. This reduces boilerplate by omitting
+ * explicit type annotations like `: string` or `: number`, while maintaining complete type safety.
+ */
 // TypeScript is very smart, you don't always need to write the type manually. If you give it an initial value, it will know the type immediately.
 
 // 1. The engine looks at the value and automatically infers that the type is string:
-let inferredString = "Ahmed Mahmoud"; 
+let inferredString = "Ahmed Mahmoud"; // Inline: TS infers string type automatically
 
 // 2. The engine looks at the number 35 and infers that the type is number:
-let inferredNumber = 35;
+let inferredNumber = 35; // Inline: TS infers number type automatically
 
 // =========================================================================
 // 🚨 What happens if we try to trick it later?

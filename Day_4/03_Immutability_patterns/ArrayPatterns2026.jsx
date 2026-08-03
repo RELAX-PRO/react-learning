@@ -1,6 +1,18 @@
 // =========================================================================
 // File: ArrayPatterns2026.jsx (Modern Array Immutability in action)
 // =========================================================================
+/**
+ * MECHANICS: Array Immutability Patterns
+ * React relies on referential equality (comparing memory addresses) to detect state changes
+ * and trigger re-renders. If you mutate an array directly (e.g., using `push()` or `splice()`),
+ * its memory address doesn't change, and React will ignore the update.
+ * To safely update arrays in React:
+ * - Adding: Use the spread operator `[...arr, newItem]` to create a new array.
+ * - Removing: Use `.filter()` to create a new array without the target item.
+ * - Updating: Use `.map()` to create a new array, selectively copying and updating objects.
+ * - Modern ES2023+ (2026 standard): Use methods like `.with(index, value)` or `.toSorted()` 
+ *   which automatically return brand new array instances without mutating the original.
+ */
 import React, { useState } from 'react';
 
 const ArrayPatterns2026 = () => {
@@ -13,6 +25,7 @@ const ArrayPatterns2026 = () => {
   // PATTERN 2.1: ADDING a new item (Prepend to the top of the list)
   const handleAddTask = (newTitle) => {
     const newTask = { id: Date.now(), title: newTitle, completed: false, priority: "Low" };
+    // Inline Comment: We create a brand new array `[]`. We insert the new item first, then spread `...prevTasks` to copy the rest.
     setTasks(prevTasks => [newTask, ...prevTasks]);
   };
 

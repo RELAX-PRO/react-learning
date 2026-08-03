@@ -1,11 +1,23 @@
 // =========================================================================
 // File 2: src/views/QuickSellWidget.jsx (Zero Boilerplate Consumption)
 // =========================================================================
+/*
+  =============================================================================
+  BLOCK COMMENT: Consuming Zustand State
+  =============================================================================
+  Zustand provides a custom hook (in this case `useInventoryStore`) that we 
+  can use directly in our components. There is no need for a Provider wrapping 
+  the App! We pass a selector function to the hook to grab only the specific 
+  pieces of state or actions we need. This prevents unnecessary re-renders.
+  =============================================================================
+*/
 import React from 'react';
 import { useInventoryStore } from '../store/useInventoryStore';
 
 const QuickSellWidget = () => {
+  // Inline Comment: Select only the 'frames' array from the store
   const frames = useInventoryStore((state) => state.frames);
+  // Inline Comment: Select the 'sellFrame' action from the store
   const sellFrame = useInventoryStore((state) => state.sellFrame);
 
   return (
@@ -21,6 +33,7 @@ const QuickSellWidget = () => {
             </div>
             
             {/* استدعاء دالة البيع مباشرة عند الضغط! */}
+            {/* Inline Comment: Calls the store action directly with the frame ID */}
             <button
               onClick={() => sellFrame(item.id)}
               disabled={item.stock === 0}

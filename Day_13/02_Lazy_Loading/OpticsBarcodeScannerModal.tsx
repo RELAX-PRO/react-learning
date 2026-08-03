@@ -7,9 +7,19 @@ import React, { useEffect } from 'react';
 interface Props {
   readonly isOpen: boolean;
   readonly onClose: () => void;
-  readonly onBarcodeDetected: (barcode: string) => void;
+  readonly onBarcodeDetected: (barcode: string) => void; // Callback when barcode is scanned
 }
 
+/**
+ * ============================================================================
+ * MECHANICS: Heavy Component Lazy Loading
+ * ----------------------------------------------------------------------------
+ * This component simulates a heavy camera barcode scanner. Since most users
+ * might not use the scanner, it is unnecessary to load its dependencies upfront.
+ * By default exporting this component, it becomes compatible with `React.lazy`,
+ * which expects a module containing a default export.
+ * ============================================================================
+ */
 const OpticsBarcodeScannerModal = ({ isOpen, onClose, onBarcodeDetected }: Props) => {
   useEffect(() => {
     console.log("📸 [Heavy Module Loaded]: Camera library and image processing loaded in the browser now!");

@@ -4,8 +4,14 @@
 // =========================================================================
 import { ApiResponse, LensStockItem, Patient } from '../02_Interface_Declaration/api';
 
+/*
+ * MECHANIC: Generic Functions
+ * By using the generic type `<T>`, this function can dynamically return different payload shapes.
+ * `Promise<ApiResponse<T>>` guarantees that whoever calls this function will receive a properly typed response,
+ * maintaining type safety from the network layer down to the React components.
+ */
 // A single generic fetch engine capable of returning any strict type!
-export async function fetchFromClinicApi<T>(endpoint: string): Promise<ApiResponse<T>> {
+export async function fetchFromClinicApi<T>(endpoint: string): Promise<ApiResponse<T>> { // Inline: <T> makes this function reusable for any payload
   const response = await fetch(`https://api.optometry-clinic.com${endpoint}`);
   
   if (!response.ok) {
@@ -13,7 +19,7 @@ export async function fetchFromClinicApi<T>(endpoint: string): Promise<ApiRespon
   }
 
   // We cast the parsed JSON cleanly into our expected ApiResponse<T>
-  const result: ApiResponse<T> = await response.json();
+  const result: ApiResponse<T> = await response.json(); // Inline: Assigning the JSON payload to our generic interface
   return result;
 }
 

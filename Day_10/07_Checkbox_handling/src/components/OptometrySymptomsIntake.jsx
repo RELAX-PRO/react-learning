@@ -13,31 +13,57 @@ const EYE_SYMPTOMS = [
  * 
  * Demonstrates how to handle a standard single Checkbox (Boolean) 
  * as well as a Group of Checkboxes mapping to an Array.
+ * 
+ * UNDERLYING MECHANICS:
+ * 1. Single Checkbox: Uses a boolean state. The `checked` attribute of the input
+ *    is directly bound to this state. The `onChange` handler updates the state
+ *    by reading `e.target.checked` (which represents the new boolean value).
+ * 2. Group of Checkboxes: Uses an array of strings (or IDs) representing the
+ *    currently selected items. The `checked` attribute is determined by checking
+ *    if the item's ID exists within this state array (e.g., using `includes()`).
+ *    The `onChange` handler determines whether to add or remove the ID from the
+ *    array based on the new `e.target.checked` state.
  */
 export const OptometrySymptomsIntake = () => {
   // 1. Single Checkbox State (Boolean)
+  // Initializes a boolean state variable `hasInsurance` to false. 
+  // `setHasInsurance` is the setter function used to update it.
   const [hasInsurance, setHasInsurance] = useState(false);
 
   // 2. Checkbox Group State (Array of IDs)
+  // Initializes an array state variable `selectedSymptoms` to an empty array.
+  // This will store the IDs of all currently checked symptoms.
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
   // =========================================================================
   // 🚀 The Group Checkbox Engine
   // =========================================================================
+  /*
+   * handleSymptomToggle is responsible for managing the selected symptoms array.
+   * It takes two arguments:
+   * - symptomId: The unique identifier of the symptom being toggled.
+   * - isChecked: A boolean representing the new state of the checkbox.
+   */
   const handleSymptomToggle = (symptomId, isChecked) => {
     if (isChecked) {
       // If checked 👈 Add the ID to the array without mutating state directly
+      // Uses the functional update form of setState: (prev) => newState
+      // The spread operator `...prev` creates a shallow copy of the existing array
+      // before appending the new `symptomId` to the end.
       setSelectedSymptoms((prev) => [...prev, symptomId]);
     } else {
       // If unchecked 👈 Remove the ID from the array using .filter()
+      // .filter() creates a new array containing all elements that pass the test
+      // implemented by the provided function (keeping items that don't match the symptomId).
       setSelectedSymptoms((prev) => prev.filter((id) => id !== symptomId));
     }
   };
 
   // Reset all choices
+  // This function simply sets all states back to their initial values.
   const handleReset = () => {
-    setHasInsurance(false);
-    setSelectedSymptoms([]);
+    setHasInsurance(false); // Reset single checkbox to false
+    setSelectedSymptoms([]); // Reset group to an empty array
   };
 
   return (
@@ -50,6 +76,9 @@ export const OptometrySymptomsIntake = () => {
           <input
             type="checkbox"
             checked={hasInsurance}
+            // `e` is the SyntheticEvent object provided by React.
+            // `e.target` refers to the input DOM element.
+            // `e.target.checked` holds the current boolean state of the checkbox.
             onChange={(e) => setHasInsurance(e.target.checked)} // 👈 Always read 'checked', not 'value'
             className="w-5 h-5 accent-cyan-500 rounded cursor-pointer"
           />
@@ -75,6 +104,8 @@ export const OptometrySymptomsIntake = () => {
         <div className="space-y-2.5">
           {EYE_SYMPTOMS.map((symptom) => {
             // Check if this specific symptom's ID exists in our selected array
+            // .includes() returns true if the array contains the symptom.id, false otherwise.
+            // This determines whether the specific checkbox should be checked.
             const isChecked = selectedSymptoms.includes(symptom.id);
 
             return (
@@ -89,6 +120,7 @@ export const OptometrySymptomsIntake = () => {
                 <input
                   type="checkbox"
                   checked={isChecked} // 👈 Bound based on array inclusion
+                  // Passes the specific symptom ID and the new checked boolean state to the handler.
                   onChange={(e) => handleSymptomToggle(symptom.id, e.target.checked)}
                   className="w-4 h-4 accent-cyan-500 rounded cursor-pointer"
                 />

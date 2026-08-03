@@ -2,8 +2,17 @@
 // File: src/components/OptometryDiscountCard.test.tsx
 // Description: Component Testing using React Testing Library & Vitest
 // =========================================================================
+/**
+ * ==========================================
+ * UNDERLYING MECHANICS: COMPONENT TESTING
+ * ==========================================
+ * React Testing Library (RTL) focuses on testing components from the user's perspective.
+ * Instead of dealing with React component instances, we interact with DOM nodes 
+ * that RTL renders in a virtual DOM environment (jsdom/happy-dom).
+ * `userEvent` provides a more realistic simulation of user interactions than fireEvent.
+ */
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react'; // 'render' mounts the component, 'screen' queries the virtual DOM
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect } from 'vitest';
 import { OptometryDiscountCard } from './OptometryDiscountCard';

@@ -1,4 +1,4 @@
-﻿// =========================================================================
+// =========================================================================
 // File: views/DynamicVisitViewer.jsx (Mastering Route Parameters)
 // =========================================================================
 import React, { useState, useEffect } from 'react';
@@ -6,6 +6,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import optometryApiClient from '../services/optometryApiClient';
 
+/**
+ * DynamicVisitViewer Component
+ * Illustrates the extraction and usage of route parameters.
+ * Uses useParams to grab 'patientId' and 'visitId' from the URL.
+ * These parameters are then used to fetch specific data from the backend.
+ * Also shows how to properly include these parameters in a useEffect dependency array.
+ */
 const DynamicVisitViewer = () => {
   // 2. EXTRACTING ROUTE PARAMETERS:
   // Names MUST match exactly what you wrote after ":" in the Route path!

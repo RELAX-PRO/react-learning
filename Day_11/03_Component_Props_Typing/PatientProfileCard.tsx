@@ -14,19 +14,25 @@ interface LensOrder {
 }
 
 // 2. Define component input Props using the contract
+/*
+ * MECHANIC: Component Props Typing
+ * By defining a `Props` interface, we dictate exactly what data this React component needs to function.
+ * `React.FC<Props>` (Functional Component) uses this interface to provide type checking and autocompletion
+ * for the component's props when it is used by a parent component.
+ */
 interface Props {
-  patientName: string;
-  initialOrder: LensOrder;
-  onUpdateOrder: (newOrder: LensOrder) => void;
+  patientName: string; // Inline: Primitive type constraint
+  initialOrder: LensOrder; // Inline: Using another interface as a property type
+  onUpdateOrder: (newOrder: LensOrder) => void; // Inline: Typing a callback function
 }
 
-export const PatientProfileCard: React.FC<Props> = ({ 
+export const PatientProfileCard: React.FC<Props> = ({  // Inline: React.FC enforces the return type and props interface
   patientName, 
   initialOrder, 
   onUpdateOrder 
 }) => {
   // 3. Bind the state explicitly to the LensOrder interface
-  const [order, setOrder] = useState<LensOrder>(initialOrder);
+  const [order, setOrder] = useState<LensOrder>(initialOrder); // Inline: Generic <LensOrder> locks state structure
 
   const handleToggleBlueLight = () => {
     const updatedOrder: LensOrder = {

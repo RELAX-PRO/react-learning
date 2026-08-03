@@ -1,3 +1,18 @@
+/**
+ * ============================================================================
+ * BLOCK COMMENT: Mastering useRef
+ * ============================================================================
+ * The `useRef` hook returns a mutable ref object whose `.current` property is
+ * initialized to the passed argument. 
+ * 
+ * It has two main use cases:
+ * 1. DOM ACCESS: Accessing a DOM element directly (e.g., to focus an input).
+ * 2. SILENT STORAGE: Storing a mutable value that does NOT cause a re-render
+ *    when updated. This is perfect for keeping track of interval IDs, previous
+ *    state values, or any other data that isn't directly rendered on screen.
+ * ============================================================================
+ */
+
 // =========================================================================
 // File: OpticalPatientSearch.jsx (Mastering DOM Access & Silent Storage)
 // =========================================================================
@@ -9,6 +24,7 @@ const OpticalPatientSearch = () => {
   const [isRunning, setIsRunning] = useState(false);
 
   // 2. SILENT REFS: Persist across renders without triggering re-renders
+  // Initializes `.current` to null. We'll attach it to a DOM element later.
   const searchInputRef = useRef(null); // Will hold the real <input> DOM element
   const timerIdRef = useRef(null);     // Will hold the setInterval ID silently
 
@@ -21,8 +37,9 @@ const OpticalPatientSearch = () => {
     }
 
     // Cleanup: Stop the timer if the component unmounts
+    // timerIdRef.current holds the interval ID safely across renders
     return () => clearInterval(timerIdRef.current);
-  }, []);
+  }, []); // Empty dependency array means this only runs once on mount
 
   //  Timer Handlers using Silent Ref Storage:
   const startExamTimer = () => {
@@ -30,6 +47,7 @@ const OpticalPatientSearch = () => {
     
     setIsRunning(true);
     // We store the interval ID inside the Ref! No re-render triggered for saving ID!
+    // Since it doesn't trigger a re-render, we don't accidentally restart intervals or lose focus.
     timerIdRef.current = setInterval(() => {
       setExamDuration(prev => prev + 1); // This state update updates the screen
     }, 1000);
@@ -58,6 +76,7 @@ const OpticalPatientSearch = () => {
       <div className="mb-6">
         <label className="block text-xs text-slate-400 mb-1">Quick Patient Search:</label>
         <input
+          // Passing our ref object to the `ref` prop links the DOM node to searchInputRef.current
           ref={searchInputRef} // <-- Hooking into the real HTML node!
           type="text"
           placeholder="Type patient file number..."
